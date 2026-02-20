@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUSCO Recognized for Quality Milling Standards — BUSCO Sugar Milling Co., Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green:       #1B5E20;
+    --green-mid:   #2E7D32;
+    --gold:        #F9A825;
+    --white:       #FFFFFF;
+    --offwhite:    #F7F9F5;
+    --text-dark:   #1A2B1C;
+    --text-body:   #374B39;
+    --text-muted:  #7A8C7C;
+    --border:      #DDE8DC;
+    --shadow-sm:   0 2px 12px rgba(27,94,32,0.07);
+    --shadow-md:   0 8px 32px rgba(27,94,32,0.12);
+    --radius-card: 14px;
+    --radius-sm:   8px;
+    --radius-pill: 100px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    height: 66px;
+    display: flex; align-items: center;
+    padding: 0 40px;
+    justify-content: space-between;
+  }
+
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+  .nav-logomark {
+    width: 36px; height: 36px;
+    background: var(--green); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-logomark svg { width: 20px; height: 20px; }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--green); line-height: 1.2;
+  }
+
+  .nav-name small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 400;
+    color: var(--text-muted); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500;
+    color: var(--text-dark); text-decoration: none; transition: color .2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+
+  .nav-links .nav-btn {
+    background: var(--green); color: white !important;
+    padding: 8px 18px; border-radius: var(--radius-sm);
+    font-weight: 600; font-size: 13px;
+    transition: background .2s, transform .15s;
+  }
+
+  .nav-links .nav-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  /* ── HERO BANNER ── */
+  .article-hero {
+    position: relative;
+    height: 480px;
+    background: linear-gradient(145deg, #1B5E20 0%, #2E7D32 55%, #1a3d20 100%);
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.5) 40px,
+      rgba(255,255,255,0.5) 41px
+    );
+  }
+
+  .hero-circles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+
+  .hero-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero-circle-1 { width: 600px; height: 600px; right: -150px; top: -200px; }
+  .hero-circle-2 { width: 300px; height: 300px; left: 5%; bottom: -100px; }
+  .hero-circle-3 { width: 160px; height: 160px; right: 20%; bottom: 10%; background: rgba(249,168,37,0.08); }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; width: 100%;
+    margin: 0 auto;
+    padding: 0 40px 52px;
+  }
+
+  .hero-breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color .2s; }
+  .hero-breadcrumb a:hover { color: var(--gold); }
+  .hero-breadcrumb-sep { color: rgba(255,255,255,0.3); }
+
+  .hero-meta {
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .badge-featured {
+    background: var(--gold); color: white;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(249,168,37,0.45);
+  }
+
+  .hero-cat {
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.9);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 12px; border-radius: var(--radius-pill);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4.5vw, 48px);
+    font-weight: 700; color: white;
+    line-height: 1.15;
+    max-width: 780px;
+    margin-bottom: 22px;
+  }
+
+  .hero-byline {
+    display: flex; align-items: center; gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .byline-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; color: rgba(255,255,255,0.65);
+  }
+
+  .byline-item svg { opacity: 0.6; flex-shrink: 0; }
+
+  .byline-divider {
+    width: 1px; height: 16px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .page-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* ── ARTICLE CONTENT ── */
+  .article-main {}
+
+  /* Share / toolbar */
+  .article-toolbar {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 40px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .toolbar-left {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; color: var(--text-muted); font-weight: 500;
+  }
+
+  .toolbar-left svg { color: var(--green-mid); }
+
+  .share-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-right: 4px;
+  }
+
+  .share-btns { display: flex; gap: 6px; }
+
+  .share-btn {
+    width: 34px; height: 34px;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    background: white; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 15px;
+    text-decoration: none;
+    transition: all .2s;
+  }
+
+  .share-btn:hover {
+    border-color: var(--green-mid);
+    color: var(--green); background: var(--offwhite);
+    transform: translateY(-1px);
+  }
+
+  /* Article content typography */
+  .article-content { font-size: 16.5px; font-weight: 300; line-height: 1.85; color: var(--text-body); }
+
+  .article-content .lead {
+    font-size: 19px; font-weight: 400; line-height: 1.7;
+    color: var(--text-dark);
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 32px;
+  }
+
+  .article-content p { margin-bottom: 22px; }
+
+  .article-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700;
+    color: var(--green);
+    margin: 40px 0 16px;
+    line-height: 1.25;
+  }
+
+  .article-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--text-dark);
+    margin: 30px 0 12px;
+    line-height: 1.3;
+  }
+
+  .article-content strong { font-weight: 600; color: var(--text-dark); }
+
+  .article-content em { font-style: italic; }
+
+  /* Inline image */
+  .article-img-wrap {
+    margin: 36px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .article-img-placeholder {
+    height: 340px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+    background: linear-gradient(145deg, #1B5E20 0%, #2E7D32 60%, #4CAF50 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-img-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='300' cy='100' r='200' fill='rgba(255,255,255,0.04)'/%3E%3Ccircle cx='50' cy='300' r='150' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") center/cover;
+  }
+
+  .article-img-caption {
+    padding: 12px 18px;
+    background: var(--offwhite);
+    font-size: 12.5px; font-weight: 400;
+    color: var(--text-muted); font-style: italic;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Blockquote */
+  .article-content blockquote {
+    margin: 36px 0;
+    padding: 24px 28px;
+    background: var(--offwhite);
+    border-left: 4px solid var(--green);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .article-content blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-style: italic;
+    color: var(--text-dark); line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .article-content blockquote cite {
+    font-size: 12.5px; font-weight: 600;
+    color: var(--green-mid); text-transform: uppercase;
+    letter-spacing: 0.07em; font-style: normal;
+  }
+
+  /* Key highlights box */
+  .highlights-box {
+    margin: 36px 0;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+
+  .highlights-title {
+    font-size: 11px; font-weight: 700;
+    color: var(--green-mid); text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .highlights-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 12px; font-size: 14.5px;
+  }
+
+  .highlight-item:last-child { margin-bottom: 0; }
+
+  .highlight-check {
+    width: 20px; height: 20px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .highlight-check svg { color: white; }
+
+  /* Tags */
+  .article-tags {
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .tags-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.07em; margin-right: 4px;
+  }
+
+  .article-tag {
+    border: 1.5px solid var(--border);
+    color: var(--text-body);
+    font-size: 12px; font-weight: 500;
+    padding: 4px 12px; border-radius: var(--radius-pill);
+    text-decoration: none; transition: all .2s;
+  }
+
+  .article-tag:hover { border-color: var(--green-mid); color: var(--green); background: var(--offwhite); }
+
+  /* Author card */
+  .author-card {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .author-avatar {
+    width: 52px; height: 52px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    color: white; font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .author-info h4 {
+    font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px;
+  }
+
+  .author-info p { font-size: 12.5px; color: var(--text-muted); }
+
+  /* ── SIDEBAR ── */
+  .article-sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+  .sidebar-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sidebar-card-header {
+    padding: 16px 22px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px; font-weight: 700;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .sidebar-card-header::before {
+    content: '';
+    width: 3px; height: 14px;
+    background: var(--green);
+    border-radius: 2px;
+  }
+
+  /* Article info box */
+  .info-rows { padding: 6px 0; }
+
+  .info-row {
+    display: flex; align-items: flex-start;
+    gap: 14px;
+    padding: 12px 22px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row:last-child { border-bottom: none; }
+
+  .info-icon {
+    width: 32px; height: 32px;
+    background: var(--offwhite);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+
+  .info-text {}
+  .info-label {
+    font-size: 10.5px; font-weight: 700;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 2px;
+  }
+
+  .info-val {
+    font-size: 13.5px; font-weight: 500; color: var(--text-dark);
+  }
+
+  .info-val.cat-pill {
+    display: inline-flex;
+    border: 1.5px solid var(--green-mid);
+    color: var(--green-mid);
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 2px 10px; border-radius: var(--radius-pill);
+  }
+
+  .info-val.feat-pill {
+    display: inline-flex;
+    background: var(--gold); color: white;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 4px;
+  }
+
+  /* Related news */
+  .related-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: background .2s;
+  }
+
+  .related-item:last-child { border-bottom: none; }
+  .related-item:hover { background: var(--offwhite); }
+
+  .related-thumb {
+    width: 54px; height: 54px;
+    border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .rt-1 { background: linear-gradient(135deg, #2E7D32, #4CAF50); }
+  .rt-2 { background: linear-gradient(135deg, #1a3d20, #2E7D32); }
+  .rt-3 { background: linear-gradient(135deg, #154318, #1B5E20); }
+
+  .related-text {}
+
+  .related-cat {
+    font-size: 10px; font-weight: 700;
+    color: var(--green-mid); text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 3px;
+  }
+
+  .related-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-dark); line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+    transition: color .2s;
+  }
+
+  .related-item:hover .related-title { color: var(--green); }
+
+  .related-date {
+    font-size: 11px; color: var(--text-muted); margin-top: 3px;
+  }
+
+  /* Download / CTA card */
+  .cta-sidebar {
+    background: var(--green);
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .cta-sidebar-icon { font-size: 36px; margin-bottom: 12px; }
+
+  .cta-sidebar h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: white; margin-bottom: 8px;
+  }
+
+  .cta-sidebar p {
+    font-size: 13px; color: rgba(255,255,255,0.7);
+    line-height: 1.6; margin-bottom: 20px;
+  }
+
+  .cta-sidebar-btn {
+    display: block;
+    background: var(--gold); color: white;
+    text-decoration: none;
+    font-size: 13px; font-weight: 700;
+    padding: 11px 20px; border-radius: 8px;
+    letter-spacing: 0.03em;
+    transition: all .2s;
+    box-shadow: 0 4px 14px rgba(249,168,37,0.4);
+  }
+
+  .cta-sidebar-btn:hover { background: #fbb831; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249,168,37,0.5); }
+
+  .cta-sidebar-link {
+    display: block; margin-top: 12px;
+    font-size: 12.5px; color: rgba(255,255,255,0.55);
+    text-decoration: none; transition: color .2s;
+  }
+
+  .cta-sidebar-link:hover { color: rgba(255,255,255,0.9); }
+
+  /* ── BACK + NEXT/PREV NAV ── */
+  .article-nav {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  .article-nav-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px; align-items: center;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-article-link {
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: 5px;
+    padding: 18px 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+    transition: all .2s;
+  }
+
+  .nav-article-link:hover {
+    border-color: var(--green-mid);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .nav-article-dir {
+    font-size: 10.5px; font-weight: 700;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .nav-article-title {
+    font-size: 13.5px; font-weight: 600; color: var(--text-dark);
+    line-height: 1.35;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  .nav-article-link:hover .nav-article-title { color: var(--green); }
+
+  .nav-article-link.next { text-align: right; align-items: flex-end; }
+
+  .back-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    background: var(--green); color: white;
+    text-decoration: none; font-size: 13px; font-weight: 600;
+    padding: 11px 20px; border-radius: 8px;
+    white-space: nowrap; flex-shrink: 0;
+    transition: all .2s;
+  }
+
+  .back-btn:hover { background: var(--green-mid); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(27,94,32,0.3); }
+
+  /* ── RELATED BOTTOM SECTION ── */
+  .related-section {
+    background: var(--offwhite);
+    border-top: 1px solid var(--border);
+    padding: 72px 40px;
+  }
+
+  .related-inner { max-width: 1200px; margin: 0 auto; }
+
+  .related-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .related-header-text .eyebrow {
+    font-size: 11px; font-weight: 700;
+    color: var(--green-mid); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 6px;
+  }
+
+  .related-header-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700; color: var(--green); line-height: 1.2;
+  }
+
+  .view-all {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--green-mid);
+    text-decoration: none; transition: gap .2s, color .2s;
+  }
+
+  .view-all:hover { color: var(--green); gap: 10px; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .related-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    text-decoration: none;
+    display: flex; flex-direction: column;
+    transition: all .25s; box-shadow: var(--shadow-sm);
+  }
+
+  .related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--green-mid);
+  }
+
+  .related-card-thumb {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px;
+    position: relative; overflow: hidden;
+  }
+
+  .rc-1 { background: linear-gradient(135deg, #2E7D32, #4CAF50); }
+  .rc-2 { background: linear-gradient(135deg, #1a3d20, #2E7D32, #F9A825 180%); }
+  .rc-3 { background: linear-gradient(135deg, #154318, #1B5E20); }
+
+  .related-card-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+  .related-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+  .rc-cat {
+    border: 1.5px solid var(--green-mid); color: var(--green-mid);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 2px 9px; border-radius: var(--radius-pill);
+  }
+
+  .rc-date { font-size: 11.5px; color: var(--text-muted); margin-left: auto; }
+
+  .rc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15.5px; font-weight: 700;
+    color: var(--green); line-height: 1.35;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    transition: color .2s;
+  }
+
+  .related-card:hover .rc-title { color: var(--green-mid); }
+
+  .rc-excerpt {
+    font-size: 13px; font-weight: 300;
+    color: var(--text-body); line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+    flex: 1;
+  }
+
+  .rc-read {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12.5px; font-weight: 600; color: var(--green-mid);
+    margin-top: 4px; transition: gap .2s, color .2s;
+  }
+
+  .related-card:hover .rc-read { color: var(--green); gap: 8px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .page-body { grid-template-columns: 1fr; gap: 40px; }
+    .article-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .cta-sidebar { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 768px) {
+    .article-hero { height: 360px; }
+    .hero-content { padding: 0 20px 40px; }
+    .page-body { padding: 40px 20px 60px; }
+    .article-nav { padding: 0 20px 60px; }
+    .article-nav-inner { grid-template-columns: 1fr 1fr; }
+    .back-btn { display: none; }
+    .related-section { padding: 60px 20px; }
+    .related-grid { grid-template-columns: 1fr; }
+    .related-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .article-sidebar { grid-template-columns: 1fr; }
+    .site-nav { padding: 0 20px; }
+    .nav-links .hide-mobile { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .article-nav-inner { grid-template-columns: 1fr; gap: 12px; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRINT SHARE TOAST ── */
+  .toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--green); color: white;
+    font-size: 13.5px; font-weight: 500;
+    padding: 12px 22px; border-radius: 8px;
+    box-shadow: 0 8px 28px rgba(27,94,32,0.3);
+    transition: transform .3s;
+    z-index: 9999; pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Progress bar */
+  .read-progress {
+    position: fixed; top: 66px; left: 0; right: 0;
+    height: 3px; z-index: 99;
+    background: var(--border);
+  }
+
+  .read-progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--green), var(--gold));
+    width: 0%;
+    transition: width .1s;
+  }
+</style>
+</head>
+<body>
+
+<!-- READING PROGRESS -->
+<div class="read-progress" role="progressbar" aria-label="Reading progress">
+  <div class="read-progress-bar" id="progressBar"></div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-logomark">
+      <svg viewBox="0 0 20 20" fill="none">
+        <path d="M10 2C10 2 4.5 6.5 4.5 12C4.5 15.5 6.9 18.5 10 18.5C13.1 18.5 15.5 15.5 15.5 12C15.5 6.5 10 2 10 2Z" fill="rgba(255,255,255,0.18)"/>
+        <path d="M10 2C10 2 6.5 7 8.5 13" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M10 2C10 2 13.5 7 11.5 13" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="10" cy="16" r="2.5" fill="white" opacity="0.9"/>
+        <path d="M5.5 11C7.5 9.8 10 10.5 12.5 9" stroke="white" stroke-width="0.9" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="nav-name">BUSCO Sugar Milling<small>Co., Inc. · Bukidnon</small></div>
+  </a>
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="#">About</a></li>
+    <li class="hide-mobile"><a href="#">Products</a></li>
+    <li><a href="busco-news.html" class="active">News</a></li>
+    <li class="hide-mobile"><a href="#">Careers</a></li>
+    <li><a href="#" class="nav-btn">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO BANNER ── -->
+<div class="article-hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-circles">
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    <div class="hero-circle hero-circle-3"></div>
+  </div>
+
+  <!-- SVG sugarcane illustration -->
+  <svg style="position:absolute;right:60px;top:40px;opacity:0.07;width:320px;" viewBox="0 0 300 400" fill="none">
+    <path d="M100 380C100 380 140 280 150 160C160 40 200 60 200 60" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M70 360C70 360 110 260 120 140" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M130 390C130 390 170 290 180 170C190 50 230 70 230 70" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M80 180C110 165 150 175 185 155" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M90 220C120 205 160 215 195 195" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M70 260C100 245 140 255 175 235" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="hero-content">
+    <nav class="hero-breadcrumb" aria-label="Breadcrumb">
+      <a href="#">Home</a>
+      <span class="hero-breadcrumb-sep">›</span>
+      <a href="busco-news.html">News &amp; Achievements</a>
+      <span class="hero-breadcrumb-sep">›</span>
+      <span style="color:rgba(255,255,255,0.45);">Quality Milling Standards</span>
+    </nav>
+
+    <div class="hero-meta">
+      <span class="badge-featured">Featured</span>
+      <span class="hero-cat">Achievements</span>
+    </div>
+
+    <h1 class="hero-title">BUSCO Recognized for Quality Milling Standards</h1>
+
+    <div class="hero-byline">
+      <div class="byline-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        February 20, 2026
+      </div>
+      <div class="byline-divider"></div>
+      <div class="byline-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        5 min read
+      </div>
+      <div class="byline-divider"></div>
+      <div class="byline-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        BUSCO Communications Office
+      </div>
+      <div class="byline-divider"></div>
+      <div class="byline-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        1,284 views
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PAGE BODY ── -->
+<div class="page-body" id="articleBody">
+
+  <!-- MAIN ARTICLE -->
+  <article class="article-main">
+
+    <!-- Toolbar -->
+    <div class="article-toolbar">
+      <div class="toolbar-left">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        News &amp; Achievements &nbsp;·&nbsp; Achievements &nbsp;·&nbsp; Feb 20, 2026
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="share-label">Share</span>
+        <div class="share-btns">
+          <a href="#" class="share-btn" title="Share on Facebook" onclick="showToast('Copied to clipboard!'); return false;">📘</a>
+          <a href="#" class="share-btn" title="Share on Twitter" onclick="showToast('Copied to clipboard!'); return false;">🐦</a>
+          <a href="#" class="share-btn" title="Copy link" onclick="showToast('Link copied!'); return false;">🔗</a>
+          <a href="#" class="share-btn" title="Print" onclick="window.print(); return false;">🖨️</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Body -->
+    <div class="article-content" id="articleContent">
+
+      <p class="lead">
+        BUSCO Sugar Milling Co., Inc. has been formally recognized by the Philippine Sugar Regulatory Administration (SRA) and industry peers for its outstanding performance in quality milling operations, reaffirming the company's position as one of Mindanao's most reliable and forward-looking sugar mills.
+      </p>
+
+      <p>
+        The recognition was awarded during the <strong>Regional Sugar Industry Summit</strong> held in Cagayan de Oro City, gathering mill operators, planters' associations, and government representatives from across Mindanao. BUSCO was among a select group of milling companies honored for consistently meeting and exceeding technical quality benchmarks over the past milling season.
+      </p>
+
+      <p>
+        Company officials, led by the Mill Manager and department heads from engineering, quality control, and operations, accepted the award on behalf of the BUSCO workforce — a team of over 600 employees and thousands of partner planters across Quezon, Bukidnon.
+      </p>
+
+      <!-- Inline image -->
+      <div class="article-img-wrap">
+        <div class="article-img-placeholder">
+          🏆
+        </div>
+        <div class="article-img-caption">
+          Representatives from BUSCO Sugar Milling Co., Inc. during the Regional Sugar Industry Summit award ceremony in Cagayan de Oro City, February 2026.
+        </div>
+      </div>
+
+      <h2>What the Recognition Covers</h2>
+
+      <p>
+        The award specifically highlights BUSCO's performance across three key evaluation areas: <strong>juice extraction efficiency</strong>, <strong>sugar color and purity metrics</strong>, and <strong>mill time utilization rates</strong>. These indicators are tracked throughout the milling season and benchmarked against regional and national standards set by the SRA.
+      </p>
+
+      <p>
+        BUSCO's quality control laboratory, operating around the clock during milling season, plays a central role in this achievement. Technicians conduct hourly analyses of cane juice, massecuite, and final sugar product — ensuring that each batch of raw sugar meets both domestic distribution and export-grade requirements.
+      </p>
+
+      <!-- Key highlights box -->
+      <div class="highlights-box">
+        <div class="highlights-title">Key Achievements This Season</div>
+        <div class="highlight-item">
+          <div class="highlight-check">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span>Achieved <strong>98.6% mill availability</strong> — exceeding the industry average by 4.2 percentage points during peak milling weeks.</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-check">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span>Maintained <strong>sugar color ratings below 1,200 ICUMSA units</strong>, meeting international standards for raw sugar quality.</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-check">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span>Improved <strong>extraction efficiency by 2.1%</strong> year-on-year through optimized tandem settings and preventive maintenance protocols.</span>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-check">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span>Zero critical safety incidents during the 2025–2026 milling season, reflecting strong operational discipline and worker training programs.</span>
+        </div>
+      </div>
+
+      <h2>A Culture of Continuous Improvement</h2>
+
+      <p>
+        For BUSCO's engineering and operations leadership, the award is not an endpoint — but a milestone in a longer journey of continuous improvement. The mill has invested significantly in equipment upgrades over the past three years, including the modernization of its evaporator station, installation of automated monitoring systems in the boiler house, and expansion of its laboratory instrumentation.
+      </p>
+
+      <blockquote>
+        <p>"This recognition belongs to every member of the BUSCO family — from the operators on the mill floor to our partner planters in the field. Quality is a shared commitment."</p>
+        <cite>— BUSCO Mill Management, 2026</cite>
+      </blockquote>
+
+      <p>
+        The company's <strong>Total Productive Maintenance (TPM)</strong> program, launched in early 2024, is widely credited for the improved mill availability scores. Under TPM, all departments participate in equipment care, early fault detection, and systematic root-cause analysis of downtime events — a cultural shift that has paid dividends in operational reliability.
+      </p>
+
+      <!-- Second image -->
+      <div class="article-img-wrap">
+        <div class="article-img-placeholder" style="background: linear-gradient(145deg, #154318 0%, #1B5E20 50%, #2E7D32 100%); height: 260px;">
+          ⚙️
+        </div>
+        <div class="article-img-caption">
+          BUSCO's mill floor during active operations — the engineering team conducts routine monitoring as part of the TPM program.
+        </div>
+      </div>
+
+      <h2>Strengthening Planter Partnerships</h2>
+
+      <p>
+        Beyond milling operations, the award also recognizes BUSCO's expanded support programs for its partner planters. The company's <strong>Agronomic Services Division</strong> conducted over 80 farm visits during the off-milling season in 2025, providing technical guidance on variety selection, fertilization schedules, and crop protection strategies.
+      </p>
+
+      <p>
+        These efforts directly translate into better cane quality at harvest — higher sucrose content, lower fiber, and reduced impurity loads — which contribute positively to mill performance metrics and ultimately benefit both the company and its planter-partners through improved sugar yield per ton of cane.
+      </p>
+
+      <h3>Looking Ahead to the 2026–2027 Season</h3>
+
+      <p>
+        BUSCO's management has announced plans to further invest in mill infrastructure ahead of the incoming season, with targeted upgrades to the crystallization station and additional capacity in the raw sugar warehouse. New planter incentive programs tied to cane quality are also under development, expected to be rolled out before the next crop cycle begins.
+      </p>
+
+      <p>
+        With this recognition in hand and a clear roadmap for improvement, BUSCO Sugar Milling Co., Inc. enters the second half of 2026 with renewed momentum — committed to serving its planters, its workforce, and the wider Bukidnon community with the highest standards of sugar milling excellence.
+      </p>
+
+    </div><!-- /article-content -->
+
+    <!-- Tags -->
+    <div class="article-tags">
+      <span class="tags-label">Tags</span>
+      <a class="article-tag" href="#">Achievements</a>
+      <a class="article-tag" href="#">Milling Operations</a>
+      <a class="article-tag" href="#">Quality Control</a>
+      <a class="article-tag" href="#">Sugar Industry</a>
+      <a class="article-tag" href="#">Bukidnon</a>
+      <a class="article-tag" href="#">TPM</a>
+    </div>
+
+    <!-- Author -->
+    <div class="author-card">
+      <div class="author-avatar">B</div>
+      <div class="author-info">
+        <h4>BUSCO Communications Office</h4>
+        <p>Official news and announcements from Busco Sugar Milling Co., Inc. · Brgy. Butong, Quezon, Bukidnon</p>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="article-sidebar">
+
+    <!-- Article Info -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Article Details</div>
+      <div class="info-rows">
+        <div class="info-row">
+          <div class="info-icon">📅</div>
+          <div class="info-text">
+            <div class="info-label">Published</div>
+            <div class="info-val">February 20, 2026</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🏷️</div>
+          <div class="info-text">
+            <div class="info-label">Category</div>
+            <div class="info-val cat-pill">Achievements</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⭐</div>
+          <div class="info-text">
+            <div class="info-label">Status</div>
+            <div class="info-val feat-pill">Featured</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⏱️</div>
+          <div class="info-text">
+            <div class="info-label">Read Time</div>
+            <div class="info-val">5 minutes</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">👁️</div>
+          <div class="info-text">
+            <div class="info-label">Views</div>
+            <div class="info-val">1,284</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✍️</div>
+          <div class="info-text">
+            <div class="info-label">Author</div>
+            <div class="info-val">Communications Office</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related in sidebar -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">More Articles</div>
+      <a class="related-item" href="#">
+        <div class="related-thumb rt-1">📋</div>
+        <div class="related-text">
+          <div class="related-cat">Announcements</div>
+          <div class="related-title">Advisory on Milling Schedule for the Week</div>
+          <div class="related-date">Feb 14, 2026</div>
+        </div>
+      </a>
+      <a class="related-item" href="#">
+        <div class="related-thumb rt-2">🌾</div>
+        <div class="related-text">
+          <div class="related-cat">Events</div>
+          <div class="related-title">BUSCO Participates in Regional Agriculture Expo</div>
+          <div class="related-date">Jan 30, 2026</div>
+        </div>
+      </a>
+      <a class="related-item" href="#">
+        <div class="related-thumb rt-3">🤝</div>
+        <div class="related-text">
+          <div class="related-cat">CSR / Community</div>
+          <div class="related-title">Farmer Training Program Conducted in Bukidnon</div>
+          <div class="related-date">Jan 18, 2026</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-sidebar">
+      <div class="cta-sidebar-icon">🌾</div>
+      <h4>Partner With BUSCO</h4>
+      <p>Interested in becoming a partner planter or supplier? Our team is ready to connect with you.</p>
+      <a href="#" class="cta-sidebar-btn">Get In Touch →</a>
+      <a href="busco-news.html" class="cta-sidebar-link">← Back to All News</a>
+    </div>
+
+  </aside>
+
+</div><!-- /page-body -->
+
+<!-- ── ARTICLE NAV (PREV / NEXT) ── -->
+<div class="article-nav">
+  <div class="article-nav-inner">
+
+    <a class="nav-article-link prev" href="#">
+      <div class="nav-article-dir">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Previous Article
+      </div>
+      <div class="nav-article-title">Holiday Office Advisory &amp; Community Support Activities</div>
+    </a>
+
+    <a class="back-btn" href="busco-news.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All News
+    </a>
+
+    <a class="nav-article-link next" href="#">
+      <div class="nav-article-dir">
+        Next Article
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </div>
+      <div class="nav-article-title">Operational Milestone: Successful Season Completion</div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ── RELATED ARTICLES BOTTOM ── -->
+<section class="related-section">
+  <div class="related-inner">
+    <div class="related-header">
+      <div class="related-header-text">
+        <div class="eyebrow">Keep Reading</div>
+        <h2>Related Articles</h2>
+      </div>
+      <a class="view-all" href="busco-news.html">
+        View All News
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="related-grid">
+
+      <a class="related-card" href="#">
+        <div class="related-card-thumb rc-1">📋</div>
+        <div class="related-card-body">
+          <div class="related-card-meta">
+            <span class="rc-cat">Announcements</span>
+            <span class="rc-date">Feb 14, 2026</span>
+          </div>
+          <div class="rc-title">Advisory on Milling Schedule for the Week</div>
+          <p class="rc-excerpt">Updated milling schedule and operational reminders for partner farmers and stakeholders.</p>
+          <div class="rc-read">Read More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <a class="related-card" href="#">
+        <div class="related-card-thumb rc-2">🌾</div>
+        <div class="related-card-body">
+          <div class="related-card-meta">
+            <span class="rc-cat">Events</span>
+            <span class="rc-date">Jan 30, 2026</span>
+          </div>
+          <div class="rc-title">BUSCO Participates in Regional Agriculture Expo</div>
+          <p class="rc-excerpt">BUSCO joins regional stakeholders to promote sustainable sugarcane farming and community development.</p>
+          <div class="rc-read">Read More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <a class="related-card" href="#">
+        <div class="related-card-thumb rc-3">⚙️</div>
+        <div class="related-card-body">
+          <div class="related-card-meta">
+            <span class="rc-cat">Achievements</span>
+            <span class="rc-date">Dec 28, 2025</span>
+          </div>
+          <div class="rc-title">Operational Milestone: Successful Season Completion</div>
+          <p class="rc-excerpt">BUSCO marks a major operational milestone with improved efficiency and stronger farmer collaboration.</p>
+          <div class="rc-read">Read More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const article = document.getElementById('articleContent');
+    const bar = document.getElementById('progressBar');
+    const articleTop = article.offsetTop;
+    const articleH = article.offsetHeight;
+    const scrolled = window.scrollY - articleTop + window.innerHeight;
+    const progress = Math.min(Math.max((scrolled / articleH) * 100, 0), 100);
+    bar.style.width = progress + '%';
+  });
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // Entrance animation
+  document.querySelectorAll('.article-content p, .article-content h2, .article-content h3, .highlights-box, .article-img-wrap, blockquote').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = `opacity .5s ease ${Math.min(i * 0.04, 0.4)}s, transform .5s ease ${Math.min(i * 0.04, 0.4)}s`;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+    obs.observe(el);
+  });
+</script>
+
+</body>
+</html>

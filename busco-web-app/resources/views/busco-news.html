@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Achievements — BUSCO Sugar Milling Co., Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green:       #1B5E20;
+    --green-mid:   #2E7D32;
+    --gold:        #F9A825;
+    --white:       #FFFFFF;
+    --offwhite:    #F7F9F5;
+    --text-dark:   #1A2B1C;
+    --text-body:   #3D4F3F;
+    --text-muted:  #7A8C7C;
+    --border:      #DDE8DC;
+    --shadow-sm:   0 2px 12px rgba(27,94,32,0.07);
+    --shadow-md:   0 8px 32px rgba(27,94,32,0.12);
+    --shadow-lg:   0 16px 48px rgba(27,94,32,0.15);
+    --radius-card: 14px;
+    --radius-sm:   8px;
+    --radius-pill: 100px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────────────── NAV ─────────────────── */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    height: 66px;
+    display: flex; align-items: center;
+    padding: 0 40px;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logomark {
+    width: 36px; height: 36px;
+    background: var(--green);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-logomark svg { width: 20px; height: 20px; }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--green); line-height: 1.2;
+  }
+
+  .nav-name small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 400;
+    color: var(--text-muted); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 28px; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500;
+    color: var(--text-dark); text-decoration: none;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+
+  .nav-links .nav-btn {
+    background: var(--green); color: white !important;
+    padding: 8px 18px; border-radius: var(--radius-sm);
+    font-weight: 600; font-size: 13px;
+    transition: background .2s, transform .15s;
+  }
+
+  .nav-links .nav-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  /* ─────────────────── PAGE WRAPPER ─────────────────── */
+  .page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  /* ─────────────────── PAGE HEADER ─────────────────── */
+  .page-header {
+    margin-bottom: 48px;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .breadcrumb a { color: var(--green-mid); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .breadcrumb-sep {
+    color: var(--border); font-size: 14px;
+  }
+
+  .breadcrumb-current { color: var(--text-muted); }
+
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .page-subtitle {
+    font-size: 16px; font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─────────────────── HEADER DIVIDER ─────────────────── */
+  .header-rule {
+    display: flex; align-items: center; gap: 12px;
+    margin: 28px 0 0;
+  }
+
+  .header-rule-line {
+    height: 2px; flex: 1;
+    background: var(--border);
+    border-radius: 1px;
+  }
+
+  .header-rule-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ─────────────────── FILTER ROW ─────────────────── */
+  .filter-row {
+    display: flex; align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    position: relative; flex: 1; min-width: 220px;
+  }
+
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--text-muted); pointer-events: none;
+    display: flex; align-items: center;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px 14px 10px 42px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; color: var(--text-dark);
+    background: white; outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+
+  .search-input::placeholder { color: var(--text-muted); }
+
+  .search-input:focus {
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(46,125,50,0.12);
+  }
+
+  .filter-group {
+    display: flex; align-items: center; gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .filter-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.07em; white-space: nowrap;
+  }
+
+  .filter-select {
+    padding: 10px 36px 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px; font-weight: 500;
+    color: var(--text-dark); background: white;
+    outline: none; cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A8C7C' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: border-color .2s, box-shadow .2s;
+  }
+
+  .filter-select:focus {
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(46,125,50,0.12);
+  }
+
+  .filter-divider {
+    width: 1px; height: 28px;
+    background: var(--border); flex-shrink: 0;
+  }
+
+  /* Result count */
+  .result-count {
+    font-size: 12.5px; font-weight: 500;
+    color: var(--text-muted); white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .result-count strong { color: var(--green); }
+
+  /* ─────────────────── NEWS GRID ─────────────────── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 60px;
+  }
+
+  /* ─────────────────── NEWS CARD ─────────────────── */
+  .news-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--green-mid);
+  }
+
+  /* Thumbnail */
+  .card-thumb {
+    position: relative;
+    height: 200px; overflow: hidden;
+    background: var(--offwhite);
+    flex-shrink: 0;
+  }
+
+  .card-thumb-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+  }
+
+  .news-card:hover .card-thumb-img { transform: scale(1.04); }
+
+  /* SVG placeholder images */
+  .thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Featured badge */
+  .badge-featured {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--gold);
+    color: white;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(249,168,37,0.4);
+    z-index: 2;
+  }
+
+  /* Thumb overlay on hover */
+  .card-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(27,94,32,0.18) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity .25s;
+  }
+
+  .news-card:hover .card-thumb::after { opacity: 1; }
+
+  /* Card body */
+  .card-body {
+    padding: 22px 24px 20px;
+    display: flex; flex-direction: column;
+    gap: 10px; flex: 1;
+  }
+
+  /* Meta row: category + date */
+  .card-meta {
+    display: flex; align-items: center;
+    gap: 10px; flex-wrap: wrap;
+  }
+
+  .card-cat {
+    display: inline-flex; align-items: center;
+    border: 1.5px solid var(--green-mid);
+    color: var(--green-mid);
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+  }
+
+  .card-date {
+    font-size: 12px; font-weight: 400;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+
+  /* Title */
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--green);
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color .2s;
+  }
+
+  .news-card:hover .card-title { color: var(--green-mid); }
+
+  /* Excerpt */
+  .card-excerpt {
+    font-size: 13.5px; font-weight: 300;
+    color: var(--text-body);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  /* Read more */
+  .card-read-more {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 13px; font-weight: 600;
+    color: var(--green-mid);
+    margin-top: 4px;
+    transition: gap .2s, color .2s;
+  }
+
+  .news-card:hover .card-read-more {
+    color: var(--green);
+    gap: 8px;
+  }
+
+  .card-read-more svg {
+    transition: transform .2s;
+  }
+
+  .news-card:hover .card-read-more svg { transform: translateX(3px); }
+
+  /* ─────────────────── CARD SEPARATORS ─────────────────── */
+  .card-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 24px;
+    flex-shrink: 0;
+  }
+
+  /* ─────────────────── PAGINATION ─────────────────── */
+  .pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px;
+  }
+
+  .page-btn {
+    min-width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px; font-weight: 500;
+    color: var(--text-body);
+    background: white; cursor: pointer;
+    text-decoration: none;
+    transition: all .2s;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .page-btn:hover {
+    border-color: var(--gold);
+    color: var(--green);
+    background: #FFFDE7;
+  }
+
+  .page-btn.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 12px rgba(27,94,32,0.25);
+  }
+
+  .page-btn.nav-pg {
+    padding: 0 14px;
+    gap: 5px;
+    font-size: 13px; font-weight: 600;
+  }
+
+  .page-btn.disabled {
+    opacity: 0.4; pointer-events: none;
+  }
+
+  .page-ellipsis {
+    width: 32px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 14px;
+  }
+
+  /* ─────────────────── EMPTY STATE ─────────────────── */
+  .empty-state {
+    display: none;
+    text-align: center; padding: 80px 20px;
+  }
+
+  .empty-icon {
+    font-size: 48px; margin-bottom: 16px;
+  }
+
+  .empty-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--green); margin-bottom: 8px;
+  }
+
+  .empty-desc {
+    font-size: 14px; color: var(--text-muted);
+  }
+
+  /* ─────────────────── RESPONSIVE ─────────────────── */
+  @media (max-width: 960px) {
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .page-wrapper { padding: 60px 20px; }
+    .site-nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+  }
+
+  @media (max-width: 640px) {
+    .news-grid { grid-template-columns: 1fr; gap: 20px; }
+    .filter-row { flex-direction: column; align-items: stretch; gap: 10px; }
+    .filter-group { width: 100%; }
+    .filter-select { flex: 1; }
+    .filter-divider { display: none; }
+    .result-count { margin-left: 0; }
+    .page-title { font-size: 32px; }
+    .nav-links .hide-mobile { display: none; }
+    .page-wrapper { padding: 40px 16px; }
+  }
+
+  /* ─────────────────── THUMB PALETTES ─────────────────── */
+  .thumb-1 { background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #4CAF50 100%); }
+  .thumb-2 { background: linear-gradient(135deg, #2E7D32 0%, #388E3C 60%, #81C784 100%); }
+  .thumb-3 { background: linear-gradient(135deg, #1a3a1c 0%, #2E7D32 70%, #F9A825 100%); }
+  .thumb-4 { background: linear-gradient(135deg, #1B5E20 0%, #33691E 60%, #8BC34A 100%); }
+  .thumb-5 { background: linear(135deg, #2E7D32 0%, #1B5E20 100%); background: linear-gradient(135deg, #154318 0%, #1B5E20 60%, #2E7D32 100%); }
+  .thumb-6 { background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 50%, #0a2e0c 100%); }
+
+  .thumb-icon {
+    font-size: 52px; opacity: 0.35;
+    filter: brightness(10);
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-logomark">
+      <svg viewBox="0 0 20 20" fill="none">
+        <path d="M10 2C10 2 4.5 6.5 4.5 12C4.5 15.5 6.9 18.5 10 18.5C13.1 18.5 15.5 15.5 15.5 12C15.5 6.5 10 2 10 2Z" fill="rgba(255,255,255,0.18)"/>
+        <path d="M10 2C10 2 6.5 7 8.5 13" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M10 2C10 2 13.5 7 11.5 13" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="10" cy="16" r="2.5" fill="white" opacity="0.9"/>
+        <path d="M5.5 11C7.5 9.8 10 10.5 12.5 9" stroke="white" stroke-width="0.9" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="nav-name">
+      BUSCO Sugar Milling
+      <small>Co., Inc. · Bukidnon</small>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="#">About</a></li>
+    <li class="hide-mobile"><a href="#">Products</a></li>
+    <li><a href="#" class="active">News</a></li>
+    <li class="hide-mobile"><a href="#">Careers</a></li>
+    <li><a href="#" class="nav-btn">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE WRAPPER ── -->
+<main class="page-wrapper">
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="#">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">News &amp; Achievements</span>
+    </nav>
+
+    <h1 class="page-title">News &amp; Achievements</h1>
+    <p class="page-subtitle">Company announcements, milestones, awards, and events.</p>
+
+    <div class="header-rule">
+      <div class="header-rule-line"></div>
+      <div class="header-rule-dot"></div>
+      <div class="header-rule-line" style="max-width:80px;"></div>
+    </div>
+  </header>
+
+  <!-- FILTER ROW -->
+  <div class="filter-row">
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="search-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </span>
+      <input class="search-input" type="text" id="searchInput" placeholder="Search news…" aria-label="Search news">
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <!-- Category -->
+    <div class="filter-group">
+      <span class="filter-label">Category</span>
+      <select class="filter-select" id="categoryFilter" aria-label="Filter by category">
+        <option value="">All</option>
+        <option value="Announcements">Announcements</option>
+        <option value="Achievements">Achievements</option>
+        <option value="Events">Events</option>
+        <option value="CSR / Community">CSR / Community</option>
+      </select>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <!-- Sort -->
+    <div class="filter-group">
+      <span class="filter-label">Sort</span>
+      <select class="filter-select" id="sortFilter" aria-label="Sort articles">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+    </div>
+
+    <div class="result-count" id="resultCount">Showing <strong>6</strong> articles</div>
+  </div>
+
+  <!-- NEWS GRID -->
+  <div class="news-grid" id="newsGrid">
+
+    <!-- Card 1 — Featured -->
+    <a class="news-card" href="#" data-cat="Achievements" data-date="2026-02-20" tabindex="0">
+      <div class="card-thumb thumb-1">
+        <div class="thumb-placeholder"><span class="thumb-icon">🏆</span></div>
+        <span class="badge-featured">Featured</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-cat">Achievements</span>
+          <span class="card-date">Feb 20, 2026</span>
+        </div>
+        <h2 class="card-title">BUSCO Recognized for Quality Milling Standards</h2>
+        <p class="card-excerpt">BUSCO receives recognition for maintaining high-quality milling operations and strengthening industry partnerships across Bukidnon and Mindanao.</p>
+        <div class="card-read-more">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a class="news-card" href="#" data-cat="Announcements" data-date="2026-02-14" tabindex="0">
+      <div class="card-thumb thumb-2">
+        <div class="thumb-placeholder"><span class="thumb-icon">📋</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-cat">Announcements</span>
+          <span class="card-date">Feb 14, 2026</span>
+        </div>
+        <h2 class="card-title">Advisory on Milling Schedule for the Week</h2>
+        <p class="card-excerpt">Updated milling schedule and operational reminders for partner farmers and stakeholders. Coordination with field teams is encouraged for seamless operations.</p>
+        <div class="card-read-more">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a class="news-card" href="#" data-cat="Events" data-date="2026-01-30" tabindex="0">
+      <div class="card-thumb thumb-3">
+        <div class="thumb-placeholder"><span class="thumb-icon">🌾</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-cat">Events</span>
+          <span class="card-date">Jan 30, 2026</span>
+        </div>
+        <h2 class="card-title">BUSCO Participates in Regional Agriculture Expo</h2>
+        <p class="card-excerpt">BUSCO joins regional stakeholders to promote sustainable sugarcane farming and community development at the annual agricultural exposition.</p>
+        <div class="card-read-more">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a class="news-card" href="#" data-cat="CSR / Community" data-date="2026-01-18" tabindex="0">
+      <div class="card-thumb thumb-4">
+        <div class="thumb-placeholder"><span class="thumb-icon">🤝</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-cat">CSR / Community</span>
+          <span class="card-date">Jan 18, 2026</span>
+        </div>
+        <h2 class="card-title">Farmer Training Program Conducted in Bukidnon</h2>
+        <p class="card-excerpt">BUSCO supports farmers through hands-on training sessions focused on productivity, crop management, and safety practices in the field.</p>
+        <div class="card-read-more">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a class="news-card" href="#" data-cat="Achievements" data-date="2025-12-28" tabindex="0">
+      <div class="card-thumb thumb-5">
+        <div class="thumb-placeholder"><span class="thumb-icon">⚙️</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-cat">Achievements</span>
+          <span class="card-date">Dec 28, 2025</span>
+        </div>
+        <h2 class="card-title">Operational Milestone: Successful Season Completion</h2>
+        <p class="card-excerpt">BUSCO marks a major operational milestone with improved efficiency and stronger farmer collaboration this milling season.</p>
+        <div class="card-read-more">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a class="news-card" href="#" data-cat="Announcements" data-date="2025-12-10" tabindex="0">
+      <div class="card-thumb thumb-6">
+        <div class="thumb-placeholder"><span class="thumb-icon">🏠</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-cat">Announcements</span>
+          <span class="card-date">Dec 10, 2025</span>
+        </div>
+        <h2 class="card-title">Holiday Office Advisory &amp; Community Support Activities</h2>
+        <p class="card-excerpt">BUSCO shares holiday advisories and highlights upcoming community outreach initiatives for the coming holiday season.</p>
+        <div class="card-read-more">
+          Read More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+  </div><!-- /news-grid -->
+
+  <!-- EMPTY STATE -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🔍</div>
+    <div class="empty-title">No results found</div>
+    <p class="empty-desc">Try adjusting your search or filter to find what you're looking for.</p>
+  </div>
+
+  <!-- PAGINATION -->
+  <nav class="pagination" aria-label="Page navigation" id="paginationWrap">
+    <a class="page-btn nav-pg disabled" href="#" aria-label="Previous page">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Prev
+    </a>
+
+    <a class="page-btn active" href="#">1</a>
+    <a class="page-btn" href="#">2</a>
+    <a class="page-btn" href="#">3</a>
+    <span class="page-ellipsis">…</span>
+    <a class="page-btn" href="#">8</a>
+
+    <a class="page-btn nav-pg" href="#" aria-label="Next page">
+      Next
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+  </nav>
+
+</main>
+
+<!-- ─────────────────── SCRIPT ─────────────────── -->
+<script>
+  const cards = document.querySelectorAll('.news-card');
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const sortFilter = document.getElementById('sortFilter');
+  const grid = document.getElementById('newsGrid');
+  const emptyState = document.getElementById('emptyState');
+  const resultCount = document.getElementById('resultCount');
+  const paginationWrap = document.getElementById('paginationWrap');
+
+  function filterAndSort() {
+    const q = searchInput.value.toLowerCase().trim();
+    const cat = categoryFilter.value;
+    const sort = sortFilter.value;
+
+    // Collect all cards as array
+    let cardArr = Array.from(cards);
+
+    // Filter
+    let visible = cardArr.filter(card => {
+      const title = card.querySelector('.card-title').textContent.toLowerCase();
+      const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
+      const cardCat = card.dataset.cat;
+
+      const matchQ = !q || title.includes(q) || excerpt.includes(q);
+      const matchCat = !cat || cardCat === cat;
+      return matchQ && matchCat;
+    });
+
+    // Sort
+    visible.sort((a, b) => {
+      const da = new Date(a.dataset.date);
+      const db = new Date(b.dataset.date);
+      return sort === 'newest' ? db - da : da - db;
+    });
+
+    // Hide all
+    cardArr.forEach(c => { c.style.display = 'none'; });
+
+    // Show visible in order
+    if (visible.length === 0) {
+      emptyState.style.display = 'block';
+      paginationWrap.style.display = 'none';
+      resultCount.innerHTML = 'Showing <strong>0</strong> articles';
+    } else {
+      emptyState.style.display = 'none';
+      paginationWrap.style.display = 'flex';
+      resultCount.innerHTML = `Showing <strong>${visible.length}</strong> article${visible.length !== 1 ? 's' : ''}`;
+
+      // Re-append in sorted order
+      visible.forEach(c => {
+        c.style.display = 'flex';
+        grid.appendChild(c);
+      });
+    }
+  }
+
+  searchInput.addEventListener('input', filterAndSort);
+  categoryFilter.addEventListener('change', filterAndSort);
+  sortFilter.addEventListener('change', filterAndSort);
+
+  // Pagination buttons (visual only for demo)
+  document.querySelectorAll('.page-btn:not(.nav-pg)').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.page-btn:not(.nav-pg)').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Card keyboard accessibility
+  cards.forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  // Staggered entrance animation
+  cards.forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = `opacity .5s ease ${i * 0.08}s, transform .5s ease ${i * 0.08}s, box-shadow .25s, border-color .25s`;
+    setTimeout(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 80);
+  });
+</script>
+
+</body>
+</html>
