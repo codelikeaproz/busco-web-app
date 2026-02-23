@@ -26,6 +26,7 @@
 18. [8-Week Sprint Tasks](#18-8-week-sprint-tasks)
 19. [Deployment Guide (Railway)](#19-deployment-guide-railway)
 20. [Security Checklist](#20-security-checklist)
+21. [Progress Record - 2026-02-21](#21-progress-record---2026-02-21)
 
 ---
 
@@ -2377,3 +2378,37 @@ CSS classes:     kebab-case               btn-primary, flash-success, card-thumb
 
 *Document prepared for BUSCO Sugar Milling Co., Inc. OJT Implementation*
 *Laravel 12 · PostgreSQL · Blade · Railway Pro · 2025*
+
+---
+
+## 21. Progress Record - 2026-02-21
+
+### Completed in This Turn (Static-First Phase)
+
+- Implemented shared static layout and partials (`resources/views/layouts/app.blade.php`, `resources/views/partials/navbar.blade.php`, `resources/views/partials/footer.blade.php`).
+- Implemented architecture-aligned static public pages:
+  - Home
+  - About
+  - Services / Operations
+  - Sugar Milling Process
+  - News & Achievements (list)
+  - News Article (detail)
+  - Quedan Price Announcement
+  - Community & Training
+  - Careers
+  - Contact
+- Implemented a shared static design system in `public/css/busco-static.css` and `public/js/busco-static.js`.
+- Styled News & Achievements using the same design direction as `resources/views/busco-news.html` (card grid, filters, badges, typography, spacing).
+- Added static route mappings in `routes/web.php` for all implemented pages (no CRUD routes yet).
+- Verification completed using `php artisan route:list` and `php artisan view:cache`.
+
+### Explicitly Not Yet Done (Deferred by Request)
+
+- Admin authentication
+- News CRUD
+- Quedan CRUD and price-difference computation
+- Database-driven page rendering
+
+### Record File
+
+- `docs/records/2026-02-21-static-frontend-implementation.md`
