@@ -2,9 +2,8 @@
     "$schema": "https://www.schemastore.org/package.json",
     "private": true,
     "type": "module",
-    "engines": { "node": "18.x" },
     "scripts": {
-        "build": "composer install --no-dev && vite build",
+        "build": "vite build",
         "dev": "vite"
     },
     "devDependencies": {
