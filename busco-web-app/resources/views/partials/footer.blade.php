@@ -1,4 +1,4 @@
-﻿<footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-grid">
             <div>
@@ -23,7 +23,12 @@
                 <h4 class="footer-col-title">Updates</h4>
                 <a class="footer-link" href="{{ route('news.index') }}">News & Achievements</a>
                 <a class="footer-link" href="{{ route('quedan') }}">Quedan Price</a>
-                <a class="footer-link" href="{{ route('community') }}">Community</a>
+                <a class="footer-link" href="{{ route('news.index', ['category' => 'CSR / Community']) }}">Community</a>
+                @if(auth()->check() && auth()->user()?->isAdmin())
+                    <a class="footer-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                @else
+                    <a class="footer-link" href="{{ route('admin.login') }}">Admin Login</a>
+                @endif
             </div>
 
             <div>

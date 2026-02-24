@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'BUSCO Sugar Milling Co., Inc.')</title>
     <meta name="description" content="@yield('meta_description', 'BUSCO Sugar Milling Co., Inc. corporate website')">
+    {{-- <link rel="icon" type="image/webp" href="{{ asset('img/busco_logo.webp') }}?v=2"> --}}
+    <link rel="icon" type="image/jpeg" href="{{ asset('img/busco_logo.jpg') }}?v=2">
+    <link rel="shortcut icon" href="{{ asset('img/busco_logo.jpg') }}?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,6 +16,8 @@
 </head>
 <body>
     @include('partials.navbar', ['activePage' => $activePage ?? ''])
+
+    @include('partials.flash-messages')
 
     <main class="site-main">
         @yield('content')

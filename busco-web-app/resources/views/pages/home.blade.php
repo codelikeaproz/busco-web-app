@@ -33,46 +33,52 @@
 <section class="section-shell">
     <div class="reveal">
         <span class="eyebrow">Latest Updates</span>
-        <h2 class="section-title">News & Achievements Preview</h2>
-        <p class="section-copy">Static preview cards for now. CRUD integration will follow after this static phase.</p>
+        <h2 class="section-title">Latest News & Achievements</h2>
+        <p class="section-copy">Latest published BUSCO news articles are now pulled from the database and linked to the public article pages.</p>
     </div>
 
     <div class="news-preview-grid">
-        <a class="preview-card reveal" href="{{ route('news.show') }}">
-            <div class="preview-thumb media-achievements"></div>
-            <div class="preview-body">
-                <div class="preview-meta">
-                    <span class="pill">Achievements</span>
-                    <span class="preview-date">Feb 20, 2026</span>
+        @forelse($latestNews as $article)
+            <a class="preview-card reveal" href="{{ route('news.show', $article) }}">
+                @if($article->image)
+                    <div class="preview-thumb">
+                        <img src="{{ $article->image_url }}" alt="{{ $article->title }}" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                @else
+                    <div class="preview-thumb" style="display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, #f5f8f2 0%, #eef3ea 100%); border-bottom:1px solid #e3eadc;">
+                        <div style="text-align:center; color:#6d7c70; padding:12px;">
+                            <div style="font-weight:700; font-size:.9rem; color:#516256;">No uploaded photo</div>
+                            <div style="font-size:.78rem; margin-top:4px;">{{ $article->category }}</div>
+                        </div>
+                    </div>
+                @endif
+                <div class="preview-body">
+                    <div class="preview-meta">
+                        <span class="pill">{{ $article->category }}</span>
+                        <span class="preview-date">{{ $article->created_at?->format('M d, Y') }}</span>
+                    </div>
+                    <h3 class="preview-title">{{ $article->title }}</h3>
+                    <p class="preview-copy">{{ $article->sub_title ?: $article->excerpt }}</p>
                 </div>
-                <h3 class="preview-title">BUSCO Recognized for Quality Milling Standards</h3>
-                <p class="preview-copy">Recognition received for operational consistency and product quality benchmarks.</p>
+            </a>
+        @empty
+            <div class="preview-card reveal" style="grid-column:1 / -1; text-decoration:none; cursor:default;">
+                <div class="preview-body">
+                    <div class="preview-meta">
+                        <span class="pill">No News Yet</span>
+                    </div>
+                    <h3 class="preview-title">News preview will appear here after seeding or publishing articles.</h3>
+                    <p class="preview-copy">Run <code>php artisan migrate:fresh --seed</code> or publish articles from the admin panel to populate this section.</p>
+                    <div style="margin-top:10px;">
+                        <a class="btn btn-secondary" href="{{ route('news.index') }}">Open News Page</a>
+                    </div>
+                </div>
             </div>
-        </a>
+        @endforelse
+    </div>
 
-        <a class="preview-card reveal" href="{{ route('news.show') }}">
-            <div class="preview-thumb media-announcement"></div>
-            <div class="preview-body">
-                <div class="preview-meta">
-                    <span class="pill">Announcements</span>
-                    <span class="preview-date">Feb 14, 2026</span>
-                </div>
-                <h3 class="preview-title">Advisory on Weekly Milling Schedule</h3>
-                <p class="preview-copy">Operational reminders and schedule guidance for partner farmers and stakeholders.</p>
-            </div>
-        </a>
-
-        <a class="preview-card reveal" href="{{ route('news.show') }}">
-            <div class="preview-thumb media-training"></div>
-            <div class="preview-body">
-                <div class="preview-meta">
-                    <span class="pill">Events</span>
-                    <span class="preview-date">Jan 30, 2026</span>
-                </div>
-                <h3 class="preview-title">Regional Agriculture Expo Participation</h3>
-                <p class="preview-copy">Showcasing sustainable sugarcane farming and community partnership initiatives.</p>
-            </div>
-        </a>
+    <div class="reveal" style="margin-top: 16px;">
+        <a class="btn btn-secondary" href="{{ route('news.index') }}">View All News</a>
     </div>
 </section>
 
@@ -82,21 +88,62 @@
         <h2 class="section-title">Active Quedan Price</h2>
     </div>
 
-    <div class="quedan-spotlight reveal">
-        <div class="quedan-top">
-            <div class="buying-price-head">BUSCO BUYING PRICE</div>
-            <div class="buying-price-dates">
-                <span><strong>Trading Date:</strong> Jun. 5, 2025</span>
-                <span><strong>Weekending:</strong> Jun. 1, 2025</span>
+    @if($activeQuedan)
+        @php
+            $homeTrendClass = match($activeQuedan->trend) {
+                'UP' => 'up',
+                'DOWN' => 'down',
+                'NO CHANGE' => 'flat',
+                default => 'flat',
+            };
+            $homeTrendLabel = $activeQuedan->trend ?? 'NO CHANGE';
+            $homeDifferenceLabel = $activeQuedan->difference === null
+                ? 'N/A'
+                : ((float) $activeQuedan->difference > 0 ? '+ ' : '') . 'PHP ' . number_format((float) $activeQuedan->difference, 2);
+        @endphp
+        <div class="quedan-spotlight reveal">
+            <div class="quedan-top">
+                <div class="buying-price-head">BUSCO BUYING PRICE</div>
+                <div class="buying-price-dates">
+                    <span><strong>Trading Date:</strong> {{ $activeQuedan->trading_date?->format('M. j, Y') }}</span>
+                    <span><strong>Weekending:</strong> {{ $activeQuedan->weekending_date?->format('M. j, Y') }}</span>
+                </div>
+                <div class="quedan-price">{{ $activeQuedan->formatted_price }}</div>
+                <div class="quedan-label">{{ $activeQuedan->price_subtext ?: 'Net of Taxes & Liens' }}</div>
             </div>
-            <div class="quedan-price">PHP 2,650.00</div>
-            <div class="quedan-label">Net of Taxes & Liens</div>
+            <div class="quedan-bottom">
+                @if($previousQuedan)
+                    <span><strong>Previous Week:</strong> {{ $previousQuedan->trading_date?->format('M. j, Y') }} - {{ $previousQuedan->formatted_price }}</span>
+                @else
+                    <span><strong>Previous Week:</strong> No previous record</span>
+                @endif
+                <span><strong>Difference:</strong> {{ $homeDifferenceLabel }}</span>
+                <span class="trend {{ $homeTrendClass }}">{{ $homeTrendLabel }}</span>
+            </div>
+            <p class="buying-note">{{ $activeQuedan->notes ?: 'Note: Negros buying price is Gross Price and Busco buying price is Net Price.' }}</p>
         </div>
-        <div class="quedan-bottom">
-            <span><strong>Previous Week:</strong> May 30, 2025 - PHP 2,650.00</span>
-            <span class="trend flat">SAME PRICE</span>
+    @else
+        <div class="quedan-spotlight reveal">
+            <div class="quedan-top">
+                <div class="buying-price-head">BUSCO BUYING PRICE</div>
+                <div class="buying-price-dates">
+                    <span><strong>Trading Date:</strong> Pending</span>
+                    <span><strong>Weekending:</strong> Pending</span>
+                </div>
+                <div class="quedan-price">PHP 0.00</div>
+                <div class="quedan-label">Net of Taxes & Liens</div>
+            </div>
+            <div class="quedan-bottom">
+                <span><strong>Previous Week:</strong> No previous record</span>
+                <span><strong>Difference:</strong> N/A</span>
+                <span class="trend flat">NO CHANGE</span>
+            </div>
+            <p class="buying-note">Post the first Quedan record from the admin panel to activate this homepage section.</p>
         </div>
-        <p class="buying-note">Note: Negros buying price is Gross Price and Busco buying price is Net Price.</p>
+    @endif
+
+    <div class="reveal" style="margin-top: 14px;">
+        <a class="btn btn-secondary" href="{{ route('quedan') }}">View Full Quedan Page</a>
     </div>
 </section>
 
@@ -123,7 +170,7 @@
                 <li>Community support initiatives and local outreach programs in partner barangays.</li>
             </ul>
 
-            <a class="btn btn-primary" href="{{ route('community') }}">View Our Impact</a>
+            <a class="btn btn-primary" href="{{ route('news.index', ['category' => 'CSR / Community']) }}">View Our Impact</a>
         </div>
     </div>
 </section>

@@ -46,7 +46,7 @@
         <div class="section-shell process-stage-inner process-stage-inner-reverse">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-green">02</div>
-                <img class="process-stage-image process-stage-image-tight" src="{{ asset('img/hero_img.webp') }}" alt="BUSCO milling facility operations used as visual for cane cutting and shredding">
+                <img class="process-stage-image process-stage-image-tight" src="{{ asset('img/cane_cutting.webp') }}" alt="BUSCO milling facility operations used as visual for cane cutting and shredding">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
@@ -69,7 +69,7 @@
         <div class="section-shell process-stage-inner">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-gold">03</div>
-                <img class="process-stage-image process-stage-image-wide" src="{{ asset('img/hero_img.webp') }}" alt="BUSCO mill facility used as visual for juice extraction">
+                <img class="process-stage-image process-stage-image-wide" src="{{ asset('img/juice_extraction.webp') }}" alt="BUSCO mill facility used as visual for juice extraction">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
@@ -92,7 +92,7 @@
         <div class="section-shell process-stage-inner process-stage-inner-reverse">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-green">04</div>
-                <img class="process-stage-image" src="{{ asset('img/hero_img.webp') }}" alt="BUSCO facility used as visual for clarification stage">
+                <img class="process-stage-image" src="{{ asset('img/clarification.webp') }}" alt="BUSCO facility used as visual for clarification stage">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
@@ -115,7 +115,7 @@
         <div class="section-shell process-stage-inner">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-gold">05</div>
-                <img class="process-stage-image process-stage-image-tight" src="{{ asset('img/hero_img.webp') }}" alt="BUSCO facility used as visual for evaporation stage">
+                <img class="process-stage-image process-stage-image-tight" src="{{ asset('img/evaporation.webp') }}" alt="BUSCO facility used as visual for evaporation stage">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
@@ -138,7 +138,7 @@
         <div class="section-shell process-stage-inner process-stage-inner-reverse">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-green">06</div>
-                <img class="process-stage-image" src="{{ asset('img/hero_img.webp') }}" alt="BUSCO facility used as visual for crystallization stage">
+                <img class="process-stage-image" src="{{ asset('img/crystallization.webp') }}" alt="BUSCO facility used as visual for crystallization stage">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
@@ -161,7 +161,7 @@
         <div class="section-shell process-stage-inner">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-gold">07</div>
-                <img class="process-stage-image process-stage-image-wide" src="{{ asset('img/hero_img.webp') }}" alt="BUSCO facility used as visual for centrifugation stage">
+                <img class="process-stage-image process-stage-image-wide" src="{{ asset('img/centrifugation.webp') }}" alt="BUSCO facility used as visual for centrifugation stage">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
@@ -184,7 +184,7 @@
         <div class="section-shell process-stage-inner process-stage-inner-reverse">
             <div class="process-stage-media">
                 <div class="process-stage-badge process-stage-badge-green">08</div>
-                <img class="process-stage-image" src="{{ asset('img/announcement.webp') }}" alt="BUSCO operations visual for drying and packaging stage">
+                <img class="process-stage-image" src="{{ asset('img/bagging.webp') }}" alt="BUSCO operations visual for drying and packaging stage">
             </div>
             <div class="process-stage-content">
                 <div class="process-stage-heading">
