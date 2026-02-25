@@ -13,6 +13,7 @@ use App\Http\Controllers\PublicSite\NewsPublicController;
 use App\Http\Controllers\PublicSite\QuedanPublicController;
 use Illuminate\Support\Facades\Route;
 
+// Public website routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/about', 'pages.about', ['activePage' => 'about'])->name('about');
 Route::view('/services', 'pages.services', ['activePage' => 'services'])->name('services');
@@ -25,13 +26,17 @@ Route::view('/contact', 'pages.contact', ['activePage' => 'contact'])->name('con
 Route::get('/careers', [CareerPublicController::class, 'index'])->name('careers');
 Route::get('/careers/{jobOpening}', [CareerPublicController::class, 'show'])->name('careers.show');
 
+// Admin authentication and admin panel routes
 Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
+        // Admin login
         Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [AuthController::class, 'login'])
             ->middleware('throttle:admin-login')
             ->name('login.submit');
+
+        // Admin password reset (guest-only)
         Route::middleware('guest')->group(function () {
             Route::get('/forgot-password', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
             Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])
@@ -43,6 +48,7 @@ Route::prefix('admin')
                 ->name('password.store');
         });
 
+        // Protected admin modules
         Route::middleware(['auth', 'admin', 'admin.inactivity'])->group(function () {
             Route::get('/', fn () => redirect()->route('admin.dashboard'))->name('index');
             Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');

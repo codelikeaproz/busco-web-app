@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+// News model for the news table.
+// Handles article status, categories, and stored gallery image paths.
 class News extends Model
 {
     use SoftDeletes;
@@ -20,6 +22,7 @@ class News extends Model
         'category',
         'status',
         'is_featured',
+        'created_at',
     ];
 
     protected $casts = [
@@ -28,21 +31,25 @@ class News extends Model
         'deleted_at' => 'datetime',
     ];
 
+    // Scope to filter published articles shown on public pages.
     public function scopePublished($query)
     {
         return $query->where('status', self::STATUS_PUBLISHED);
     }
 
+    // Scope to filter homepage-featured articles.
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);
     }
 
+    // Scope to filter news by category
     public function scopeCategory($query, string $category)
     {
         return $query->where('category', $category);
     }
 
+    // Get the image url for the news
     public function getImageUrlAttribute(): string
     {
         $primaryPath = $this->primary_image_path;
@@ -50,6 +57,7 @@ class News extends Model
         return $this->resolveImageUrl($primaryPath);
     }
 
+    // Get all the image paths for the news
     /**
      * @return list<string>
      */

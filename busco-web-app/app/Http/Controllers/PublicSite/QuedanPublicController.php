@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\QuedanPrice;
 use Illuminate\View\View;
 
+// Public Quedan page controller for active price and historical records
 class QuedanPublicController extends Controller
 {
     /**

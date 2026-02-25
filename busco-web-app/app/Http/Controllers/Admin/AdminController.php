@@ -9,6 +9,7 @@ use App\Models\QuedanPrice;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
+// Admin dashboard controller for summary stats and quick overview panels
 class AdminController extends Controller
 {
     /**

@@ -1,9 +1,12 @@
+{{-- View: pages/careers.blade.php | Purpose: Public careers listing page. --}}
+
 @extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | Careers')
 @section('meta_description', 'Current job openings and career opportunities at BUSCO Sugar Milling Co., Inc.')
 
 @section('content')
+{{-- Careers page heading and intro copy --}}
 <section class="page-shell">
     <header class="page-header reveal">
         <div class="breadcrumb">
@@ -17,6 +20,7 @@
         </p>
     </header>
 
+    {{-- Application process note (email-only workflow) --}}
     <section class="surface reveal" style="padding: 22px;">
         <h2 class="section-title" style="font-size: clamp(26px, 3.3vw, 36px);">Open Positions</h2>
         <p class="section-copy" style="margin-bottom:0;">
@@ -26,6 +30,7 @@
         </p>
     </section>
 
+    {{-- Public careers filters: search, department, employment type --}}
     <form class="careers-controls reveal" method="GET" action="{{ route('careers') }}">
         <div class="search-box">
             <span class="search-icon" aria-hidden="true" style="font-size:15px; left:13px;">⌕</span>
@@ -60,6 +65,7 @@
         </div>
     </form>
 
+    {{-- Job cards grid or empty-state fallback --}}
     @if($jobs->count())
         <div class="careers-grid">
             @foreach($jobs as $job)
@@ -87,6 +93,7 @@
         </div>
 
         @if($jobs->hasPages())
+            {{-- Shared pagination partial for careers listing --}}
             @include('partials.custom-pagination', [
                 'paginator' => $jobs,
                 'navLabel' => 'Careers pagination',

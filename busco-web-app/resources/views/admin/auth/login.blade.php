@@ -1,3 +1,5 @@
+{{-- View: admin/auth/login.blade.php | Purpose: Admin authentication page template. --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

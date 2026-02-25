@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+{{-- View: layouts/app.blade.php | Purpose: Public site layout wrapper used by frontend pages. --}}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,16 +17,21 @@
     @stack('head')
 </head>
 <body>
+    {{-- Global public navigation --}}
     @include('partials.navbar', ['activePage' => $activePage ?? ''])
 
+    {{-- Cross-page flash/validation messages --}}
     @include('partials.flash-messages')
 
+    {{-- Page-specific content --}}
     <main class="site-main">
         @yield('content')
     </main>
 
+    {{-- Global public footer --}}
     @include('partials.footer')
 
+    {{-- Shared static interactions for the public site --}}
     <script src="{{ asset('js/busco-static.js') }}"></script>
     @stack('scripts')
 </body>

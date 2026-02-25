@@ -1,3 +1,5 @@
+{{-- View: admin/profile/change-password.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Change Password')

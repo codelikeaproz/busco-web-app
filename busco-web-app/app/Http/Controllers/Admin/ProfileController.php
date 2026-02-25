@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
+// Admin profile management controller (name + password updates)
 class ProfileController extends Controller
 {
     /**

@@ -1,5 +1,8 @@
+{{-- View: partials/navbar.blade.php | Purpose: Shared public navigation bar partial. --}}
+
 <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
+        {{-- Brand/logo link back to homepage --}}
         <a class="nav-brand" href="{{ route('home') }}">
             <img class="nav-logo" src="{{ asset('img/busco_logo.webp') }}" alt="BUSCO logo">
             <span class="nav-name">
@@ -8,10 +11,12 @@
             </span>
         </a>
 
+        {{-- Mobile nav toggle (handled by public/js/busco-static.js) --}}
         <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
             <span aria-hidden="true">|||</span>
         </button>
 
+        {{-- Primary navigation links + contact CTA --}}
         <div class="nav-menu" data-nav-menu>
             <a class="nav-link {{ $activePage === 'home' ? 'is-active' : '' }}" href="{{ route('home') }}">Home</a>
             <a class="nav-link {{ $activePage === 'about' ? 'is-active' : '' }}" href="{{ route('about') }}">About</a>

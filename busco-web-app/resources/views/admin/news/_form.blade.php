@@ -1,5 +1,9 @@
-@php($editing = isset($news))
+{{-- View: admin/news/_form.blade.php | Purpose: Shared admin news create/edit form partial. --}}
 
+@php($editing = isset($news))
+@php($publishDateValue = old('publish_date', $editing && $news->created_at ? $news->created_at->format('Y-m-d') : now()->format('Y-m-d')))
+
+{{-- Main article fields and gallery upload controls --}}
 <div class="form-grid" data-admin-news-form-grid style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:14px;">
     <div class="form-group" style="grid-column:1 / -1;">
         <label for="title">Title</label>
@@ -41,6 +45,15 @@
         @enderror
     </div>
 
+    <div class="form-group">
+        <label for="publish_date">Publish Date</label>
+        <input id="publish_date" name="publish_date" type="date" class="form-input" value="{{ $publishDateValue }}">
+        <small style="display:block; margin-top:6px; color:#637266;">Uses the article publish date shown on public pages (saved using <code>created_at</code>).</small>
+        @error('publish_date')
+            <span class="form-error">{{ $message }}</span>
+        @enderror
+    </div>
+
     <div class="form-group" style="grid-column:1 / -1;">
         <label for="gallery_images">Article Images (Optional, max 5)</label>
         <input id="gallery_images" name="gallery_images[]" type="file" class="form-input" accept=".jpg,.jpeg" multiple data-news-gallery-input>
@@ -53,11 +66,13 @@
         @enderror
 
         <div data-news-gallery-preview-wrap style="margin-top:12px; display:none;">
+            {{-- Client-side preview grid for newly selected uploads (before submit) --}}
             <div style="font-weight:700; color:#1c3d20; margin-bottom:8px;">Selected Images Preview</div>
             <div data-news-gallery-preview-grid style="display:flex; flex-wrap:wrap; gap:10px;"></div>
         </div>
 
         @if($editing && count($news->gallery_images))
+            {{-- Existing stored images with remove checkboxes for update flow --}}
             <div style="margin-top:12px;">
                 <div style="font-weight:700; color:#1c3d20; margin-bottom:8px;">Current Images (check to remove)</div>
                 <div style="display:flex; flex-wrap:wrap; gap:10px;">
@@ -96,6 +111,7 @@
     </div>
 </div>
 
+{{-- Mobile layout fallback for the two-column admin form grid --}}
 <style>
     @media (max-width: 920px) {
         .admin-panel [data-admin-news-form-grid] {
@@ -108,6 +124,7 @@
     @push('scripts')
         <script>
             (function () {
+                // Client-side gallery preview/remove UX; server still enforces upload rules.
                 const input = document.querySelector('[data-news-gallery-input]');
                 const previewWrap = document.querySelector('[data-news-gallery-preview-wrap]');
                 const previewGrid = document.querySelector('[data-news-gallery-preview-grid]');
@@ -118,6 +135,7 @@
                 }
 
                 const syncInputFiles = () => {
+                    // Rebuild FileList after removing an item from the preview list.
                     if (typeof DataTransfer === 'undefined') {
                         return;
                     }
@@ -128,6 +146,7 @@
                 };
 
                 const createPreviewCard = (file, index) => {
+                    // Render one preview tile with image thumbnail + remove button.
                     const card = document.createElement('div');
                     card.style.width = '170px';
                     card.style.border = '1px solid #e1e9de';
@@ -197,6 +216,7 @@
                 };
 
                 const renderPreview = () => {
+                    // Sync preview UI with the current selectedFiles array.
                     previewGrid.innerHTML = '';
 
                     if (!selectedFiles.length) {

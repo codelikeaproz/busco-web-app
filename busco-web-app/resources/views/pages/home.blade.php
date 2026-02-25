@@ -1,9 +1,12 @@
-﻿@extends('layouts.app')
+{{-- View: pages/home.blade.php | Purpose: Public homepage with dynamic previews. --}}
+
+@extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | Home')
 @section('meta_description', 'Official BUSCO Sugar Milling Co., Inc. website with company profile, news, and Quedan updates.')
 
 @section('content')
+{{-- Hero / brand positioning section --}}
 <section class="home-hero">
     <div class="hero-shell">
         <div class="reveal">
@@ -30,6 +33,7 @@
     </div>
 </section>
 
+{{-- Latest published news preview cards --}}
 <section class="section-shell">
     <div class="reveal">
         <span class="eyebrow">Latest Updates</span>
@@ -82,6 +86,7 @@
     </div>
 </section>
 
+{{-- Active Quedan price spotlight --}}
 <section class="section-shell section-alt">
     <div class="reveal">
         <span class="eyebrow">Current Announcement</span>
@@ -90,6 +95,7 @@
 
     @if($activeQuedan)
         @php
+            // Precompute UI labels/classes so the markup stays readable.
             $homeTrendClass = match($activeQuedan->trend) {
                 'UP' => 'up',
                 'DOWN' => 'down',
@@ -147,6 +153,7 @@
     </div>
 </section>
 
+{{-- Community impact highlight and CTA to CSR/Community news --}}
 <section class="section-shell">
     <div class="home-community-block reveal">
         <div class="home-community-media">

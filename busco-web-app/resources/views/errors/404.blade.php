@@ -1,3 +1,5 @@
+{{-- View: errors/404.blade.php | Purpose: Custom 404 error page. --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

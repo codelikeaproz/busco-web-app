@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
+// Middleware that auto-logs out idle admins after a fixed timeout window
 class AdminInactivityTimeout
 {
     private const SESSION_KEY = 'admin_last_activity_at';

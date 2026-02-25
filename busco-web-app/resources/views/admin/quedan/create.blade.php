@@ -1,3 +1,5 @@
+{{-- View: admin/quedan/create.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Post Quedan Price')

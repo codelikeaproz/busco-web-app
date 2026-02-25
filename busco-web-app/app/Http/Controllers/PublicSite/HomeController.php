@@ -8,6 +8,7 @@ use App\Models\QuedanPrice;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
+// Public homepage controller for news previews and Quedan summary data
 class HomeController extends Controller
 {
     /**

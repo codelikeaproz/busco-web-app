@@ -1,3 +1,5 @@
+{{-- View: admin/news/index.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'News Management')
@@ -5,6 +7,7 @@
 @section('page_header_subtitle', 'Manage news, achievements, events, and CSR/community posts in one module.')
 
 @section('content')
+{{-- Filter toolbar for category/status/trash state --}}
 <section class="admin-section">
     <div class="form-card">
         <form method="GET" action="{{ route('admin.news.index') }}" class="form-grid" style="gap:12px;">
@@ -49,6 +52,7 @@
     </div>
 </section>
 
+{{-- News records table with inline admin actions (edit/publish/trash/restore) --}}
 <section class="admin-section">
     <div class="form-card" style="overflow:auto;">
         <table style="width:100%; border-collapse:collapse; min-width:920px;">
@@ -59,7 +63,7 @@
                     <th style="padding:10px 8px;">Category</th>
                     <th style="padding:10px 8px;">Status</th>
                     <th style="padding:10px 8px;">Featured</th>
-                    <th style="padding:10px 8px;">Created</th>
+                    <th style="padding:10px 8px;">Publish Date</th>
                     <th style="padding:10px 8px;">State</th>
                     <th style="padding:10px 8px;">Actions</th>
                 </tr>
@@ -119,6 +123,7 @@
         </table>
 
         @if($news->hasPages())
+            {{-- Compact shared pagination component --}}
             @include('partials.custom-pagination', [
                 'paginator' => $news,
                 'navLabel' => 'Admin news pagination',
@@ -128,6 +133,7 @@
     </div>
 </section>
 
+{{-- Responsive filter grid collapse for smaller screens --}}
 <style>
     @media (max-width: 980px) {
         .admin-panel [data-news-filter-grid] {

@@ -1,3 +1,5 @@
+{{-- View: admin/news/edit.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Edit News')

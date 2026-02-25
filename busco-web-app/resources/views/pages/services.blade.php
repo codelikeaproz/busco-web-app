@@ -1,4 +1,6 @@
-﻿@extends('layouts.app')
+{{-- View: pages/services.blade.php | Purpose: Public page template. --}}
+
+@extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | Services & Operations')
 @section('meta_description', 'Overview of BUSCO services including sugar milling, procurement, quality assurance, and distribution support.')

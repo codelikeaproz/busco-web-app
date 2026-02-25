@@ -1,11 +1,15 @@
+{{-- View: pages/news/show.blade.php | Purpose: Public news article detail page. --}}
+
 @extends('layouts.app')
 
 @section('title', $news->title . ' | BUSCO')
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags($news->sub_title ?: $news->content), 155))
 
+{{-- Resolve gallery images once so the template can reuse normalized URLs. --}}
 @php($articleImages = $news->gallery_images)
 
 @section('content')
+{{-- Article hero header with breadcrumb and metadata --}}
 <section class="article-hero">
     <div class="article-hero-shell">
         <div class="breadcrumb" style="color: rgba(255,255,255,.72);">
@@ -28,6 +32,7 @@
     </div>
 </section>
 
+{{-- Two-column article layout: main content + sidebar --}}
 <section class="article-layout">
     <article class="article-content reveal">
         @if($news->sub_title)
@@ -39,6 +44,7 @@
         </div>
 
         @if(count($articleImages))
+            {{-- Render uploaded article gallery images (if any) --}}
             <section style="margin-top:18px;">
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
                     <h2 style="margin:0; font-size:1.05rem; color:#1c3d20;">Article Images</h2>
@@ -64,6 +70,7 @@
         </div>
     </article>
 
+    {{-- Sidebar metadata, related articles, and contact CTA --}}
     <aside class="article-sidebar">
         <section class="sidebar-card reveal">
             <div class="sidebar-head">Article Details</div>

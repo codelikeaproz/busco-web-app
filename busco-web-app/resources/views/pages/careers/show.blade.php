@@ -1,14 +1,18 @@
+{{-- View: pages/careers/show.blade.php | Purpose: Public job detail page. --}}
+
 @extends('layouts.app')
 
 @section('title', $job->title . ' | Careers | BUSCO')
 @section('meta_description', $job->short_description)
 
 @php
+    // Prebuild the HR application mailto link with job title in the subject.
     $applySubject = rawurlencode('Application - ' . $job->title);
     $applyHref = 'mailto:' . ($job->application_email ?: 'hrd_buscosugarmill@yahoo.com') . '?subject=' . $applySubject;
 @endphp
 
 @section('content')
+{{-- Job hero header with breadcrumb and key metadata --}}
 <section class="article-hero" style="background: linear-gradient(135deg, #14411a 0%, #1f6028 55%, #17461d 100%);">
     <div class="article-hero-shell">
         <div class="breadcrumb" style="color: rgba(255,255,255,.72);">
@@ -31,6 +35,7 @@
     </div>
 </section>
 
+{{-- Two-column layout: job details content + HR/related jobs sidebar --}}
 <section class="article-layout">
     <article class="article-content reveal">
         @if($job->summary)
@@ -43,6 +48,7 @@
         </div>
 
         @if($job->responsibilities)
+            {{-- Optional responsibilities block --}}
             <section class="article-box" style="margin-top:18px;">
                 <h3>Key Responsibilities</h3>
                 <div style="line-height:1.75; color:#394b3f;">
@@ -52,6 +58,7 @@
         @endif
 
         @if($job->qualifications)
+            {{-- Optional qualifications block --}}
             <section class="article-box" style="margin-top:18px;">
                 <h3>Qualifications</h3>
                 <div style="line-height:1.75; color:#394b3f;">
@@ -66,6 +73,7 @@
         </div>
     </article>
 
+    {{-- Sidebar: summary, HR email CTA, related openings --}}
     <aside class="article-sidebar">
         <section class="sidebar-card reveal">
             <div class="sidebar-head">Job Summary</div>

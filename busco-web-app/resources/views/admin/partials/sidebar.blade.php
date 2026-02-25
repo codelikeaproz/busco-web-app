@@ -1,3 +1,5 @@
+{{-- View: admin/partials/sidebar.blade.php | Purpose: Admin module page template. --}}
+
 @php
     $user = auth()->user();
     $name = trim((string) ($user?->name ?? 'Administrator'));

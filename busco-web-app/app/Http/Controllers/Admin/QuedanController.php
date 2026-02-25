@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
+// Admin controller for posting, editing, and recalculating Quedan prices
 class QuedanController extends Controller
 {
     /**

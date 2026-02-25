@@ -1,3 +1,5 @@
+{{-- View: errors/500.blade.php | Purpose: Custom 500 server error page. --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

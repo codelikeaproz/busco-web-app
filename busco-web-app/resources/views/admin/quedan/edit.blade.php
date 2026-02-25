@@ -1,3 +1,5 @@
+{{-- View: admin/quedan/edit.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Edit Quedan Record')

@@ -1,3 +1,5 @@
+{{-- View: admin/dashboard.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Dashboard')

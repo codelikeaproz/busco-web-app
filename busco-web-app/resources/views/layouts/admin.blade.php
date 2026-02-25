@@ -1,3 +1,5 @@
+{{-- View: layouts/admin.blade.php | Purpose: Admin panel layout wrapper with sidebar, header, and shared assets. --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -284,8 +286,10 @@
         $resolvedPageSubtitle = trim($__env->yieldContent('page_header_subtitle'));
     @endphp
     <div class="admin-shell">
+        {{-- Persistent admin sidebar navigation / account panel --}}
         @include('admin.partials.sidebar')
         <main class="admin-main">
+            {{-- Page header built from per-view title/subtitle sections --}}
             <header class="admin-topbar" aria-label="Admin page header">
                 <div>
                     <div class="admin-topbar-label">BUSCO Admin</div>
@@ -295,13 +299,16 @@
                     @endif
                 </div>
             </header>
+            {{-- Shared flash and validation feedback --}}
             @include('partials.flash-messages')
+            {{-- Admin page body --}}
             <div class="admin-panel">
                 @yield('content')
             </div>
             <footer class="admin-footer">Busco Sugar Milling Co., Inc. {{ now()->year }}</footer>
         </main>
     </div>
+    {{-- Reusable confirmation modal used by forms with data-confirm-* attributes --}}
     <div class="admin-modal-overlay" data-confirm-modal hidden>
         <div class="admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="admin-confirm-title" aria-describedby="admin-confirm-message">
             <div class="admin-modal-head">
@@ -319,6 +326,7 @@
     @stack('scripts')
     <script>
         (function () {
+            // Generic confirmation modal handler for delete/trash actions.
             const modal = document.querySelector('[data-confirm-modal]');
             if (!modal) {
                 return;
@@ -408,6 +416,7 @@
     </script>
     <script>
         (function () {
+            // Client-side idle logout watcher to complement server-side inactivity middleware.
             const logoutForm = document.querySelector('[data-admin-logout-form]');
             if (!logoutForm) {
                 return;

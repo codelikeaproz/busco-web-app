@@ -13,13 +13,16 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password as PasswordRule;
 use Illuminate\View\View;
 
+// Admin password reset request and reset submission controller
 class PasswordResetController extends Controller
 {
+    // Show the "forgot password" form for admin users
     public function showLinkRequestForm(): View
     {
         return view('admin.auth.forgot-password');
     }
 
+    // Send reset link while avoiding user/account enumeration
     public function sendResetLinkEmail(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -46,6 +49,7 @@ class PasswordResetController extends Controller
             ->onlyInput('email');
     }
 
+    // Show the reset password form with token and email query string
     public function showResetForm(Request $request, string $token): View
     {
         return view('admin.auth.reset-password', [
@@ -54,6 +58,7 @@ class PasswordResetController extends Controller
         ]);
     }
 
+    // Reset the admin password using the default password broker
     public function reset(Request $request): RedirectResponse
     {
         $validated = $request->validate([

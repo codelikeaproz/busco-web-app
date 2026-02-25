@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+// Handles admin login and logout using Laravel's web guard
 class AuthController extends Controller
 {
     /**
@@ -25,6 +26,7 @@ class AuthController extends Controller
     /**
      * Authenticate an admin user using the default web guard.
      */
+    // Validate credentials and sign in only admin users
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
@@ -60,6 +62,7 @@ class AuthController extends Controller
     /**
      * Logout the current admin user.
      */
+    // Destroy the current session and return to admin login
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();

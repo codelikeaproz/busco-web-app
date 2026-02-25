@@ -7,8 +7,10 @@ use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// Public news pages controller (listing and article detail)
 class NewsPublicController extends Controller
 {
+    // Show paginated published news with optional category filtering
     public function index(Request $request): View
     {
         $query = News::published()->orderByDesc('created_at')->orderByDesc('id');
@@ -25,6 +27,7 @@ class NewsPublicController extends Controller
         ]);
     }
 
+    // Show a published news article and related articles from the same category
     public function show(News $news): View
     {
         abort_if($news->status !== News::STATUS_PUBLISHED, 404);

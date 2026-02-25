@@ -1,9 +1,12 @@
+{{-- View: pages/news/index.blade.php | Purpose: Public news listing page. --}}
+
 @extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | News & Achievements')
 @section('meta_description', 'Company announcements, milestones, and event updates from BUSCO Sugar Milling Co., Inc.')
 
 @section('content')
+{{-- Page shell and title for the public news listing --}}
 <section class="page-shell">
     <header class="page-header reveal">
         <div class="breadcrumb">
@@ -15,6 +18,7 @@
         <p class="page-subtitle">Company announcements, milestones, awards, and events.</p>
     </header>
 
+    {{-- Category filter controls and result count --}}
     <div class="news-controls reveal" style="display:flex; gap:12px; align-items:end; flex-wrap:wrap;">
         <form method="GET" action="{{ route('news.index') }}" style="display:flex; gap:12px; align-items:end; flex-wrap:wrap; width:100%;">
             <div class="control-group">
@@ -43,6 +47,7 @@
         </form>
     </div>
 
+    {{-- News article cards grid --}}
     <div class="news-grid" id="newsGrid">
         @forelse($news as $article)
             <a class="news-card reveal" href="{{ route('news.show', $article) }}">
@@ -84,6 +89,7 @@
     </div>
 
     @if($news->hasPages())
+        {{-- Inline pagination UI (news page currently uses local markup, not shared partial) --}}
         <nav class="news-pagination" aria-label="News pagination">
             @if($news->onFirstPage())
                 <span class="page-chip" aria-disabled="true">Prev</span>

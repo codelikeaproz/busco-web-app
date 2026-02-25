@@ -7,8 +7,10 @@ use App\Models\JobOpening;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// Public careers controller for job listings and job detail pages
 class CareerPublicController extends Controller
 {
+    // Show open job listings with filter/search support
     public function index(Request $request): View
     {
         $query = JobOpening::publiclyOpen()
@@ -52,6 +54,7 @@ class CareerPublicController extends Controller
         ]);
     }
 
+    // Show a single open job posting and related jobs from the same department
     public function show(JobOpening $jobOpening): View
     {
         abort_if($jobOpening->status !== JobOpening::STATUS_OPEN, 404);

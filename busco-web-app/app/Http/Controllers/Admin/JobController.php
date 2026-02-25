@@ -8,8 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// Admin CRUD controller for job openings shown on the careers page
 class JobController extends Controller
 {
+    // List jobs with admin filters and search options
     public function index(Request $request): View
     {
         $query = JobOpening::query();
@@ -59,6 +61,7 @@ class JobController extends Controller
         ]);
     }
 
+    // Show the create form for a new job opening
     public function create(): View
     {
         return view('admin.jobs.create', [
@@ -68,6 +71,7 @@ class JobController extends Controller
         ]);
     }
 
+    // Create a new job opening record
     public function store(Request $request): RedirectResponse
     {
         $validated = $this->validatedJobData($request);
@@ -81,6 +85,7 @@ class JobController extends Controller
             ->with('success', 'Job opening "' . $job->title . '" created successfully.');
     }
 
+    // Show the edit form for an existing job opening
     public function edit(JobOpening $job): View
     {
         return view('admin.jobs.edit', [
@@ -90,6 +95,7 @@ class JobController extends Controller
         ]);
     }
 
+    // Update an existing job opening record
     public function update(Request $request, JobOpening $job): RedirectResponse
     {
         $validated = $this->validatedJobData($request);
@@ -102,6 +108,7 @@ class JobController extends Controller
             ->with('success', 'Job opening updated successfully.');
     }
 
+    // Delete a job opening from admin records
     public function destroy(JobOpening $job): RedirectResponse
     {
         $title = $job->title;

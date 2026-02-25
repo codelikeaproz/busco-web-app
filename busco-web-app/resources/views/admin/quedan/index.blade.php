@@ -1,3 +1,5 @@
+{{-- View: admin/quedan/index.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Quedan Management')
@@ -5,6 +7,7 @@
 @section('page_header_subtitle', 'Post weekly Quedan prices, review archived history, and correct records when needed.')
 
 @section('content')
+{{-- Primary action card for posting the next weekly Quedan price --}}
 <section class="admin-section">
     <div class="form-card" style="padding:14px 16px;">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
@@ -14,6 +17,7 @@
     </div>
 </section>
 
+{{-- Current active Quedan record summary and quick edit action --}}
 <section class="admin-section">
     <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif;">Active Price</h2>
     <div class="form-card">
@@ -50,6 +54,7 @@
     </div>
 </section>
 
+{{-- Archived Quedan history table with edit/delete actions --}}
 <section class="admin-section">
     <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif;">Archived History</h2>
     <div class="form-card" style="overflow:auto;">
@@ -104,6 +109,7 @@
         </table>
 
         @if($archived->hasPages())
+            {{-- Compact shared pagination component --}}
             @include('partials.custom-pagination', [
                 'paginator' => $archived,
                 'navLabel' => 'Admin Quedan archived pagination',
@@ -113,6 +119,7 @@
     </div>
 </section>
 
+{{-- Responsive layout tweaks for active Quedan summary cards --}}
 <style>
     @media (max-width: 1100px) {
         .admin-panel [data-quedan-active-top] {

@@ -1,3 +1,5 @@
+{{-- View: partials/flash-messages.blade.php | Purpose: Shared flash and validation message partial. --}}
+
 @if (session('success'))
     <div class="flash flash-success" role="alert">
         <span class="flash-icon" aria-hidden="true">OK</span>

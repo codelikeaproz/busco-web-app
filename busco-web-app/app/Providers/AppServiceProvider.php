@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
+// Registers application-level rate limits and admin password reset URL behavior
 class AppServiceProvider extends ServiceProvider
 {
     /**

@@ -1,4 +1,6 @@
-﻿@extends('layouts.app')
+{{-- View: pages/community.blade.php | Purpose: Public page template. --}}
+
+@extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | Community & Training')
 @section('meta_description', 'Community outreach, CSR initiatives, and farmer training programs of BUSCO.')

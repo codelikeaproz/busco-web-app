@@ -1,3 +1,5 @@
+{{-- View: partials/footer.blade.php | Purpose: Shared public footer partial. --}}
+
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-grid">

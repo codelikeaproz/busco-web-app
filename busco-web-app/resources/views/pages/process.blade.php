@@ -1,3 +1,5 @@
+{{-- View: pages/process.blade.php | Purpose: Public page template. --}}
+
 @extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | Sugar Milling Process')

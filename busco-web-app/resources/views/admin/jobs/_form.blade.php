@@ -1,5 +1,8 @@
+{{-- View: admin/jobs/_form.blade.php | Purpose: Shared admin jobs create/edit form partial. --}}
+
 @php($editing = isset($job))
 
+{{-- Shared job opening form fields used by create and edit pages --}}
 <div class="form-grid" data-admin-job-form-grid style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:14px;">
     <div class="form-group" style="grid-column:1 / -1;">
         <label for="title">Job Title</label>
@@ -113,6 +116,7 @@
     </div>
 </div>
 
+{{-- Mobile layout fallback for the two-column admin form grid --}}
 <style>
     @media (max-width: 920px) {
         .admin-panel [data-admin-job-form-grid] {

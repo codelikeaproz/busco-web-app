@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+// Middleware that restricts admin routes to authenticated admin accounts only
 class EnsureUserIsAdmin
 {
     /**

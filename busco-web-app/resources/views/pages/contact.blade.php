@@ -1,4 +1,6 @@
-﻿@extends('layouts.app')
+{{-- View: pages/contact.blade.php | Purpose: Public page template. --}}
+
+@extends('layouts.app')
 
 @section('title', 'BUSCO Sugar Milling Co., Inc. | Contact')
 @section('meta_description', 'Contact information for BUSCO Sugar Milling Co., Inc. including office location, email, and phone.')

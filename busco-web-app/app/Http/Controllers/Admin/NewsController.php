@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
+// Admin CRUD controller for news articles, status toggles, and gallery uploads
 class NewsController extends Controller
 {
+    // List all articles (including trashed) with admin filters
     public function index(Request $request): View
     {
         $query = News::withTrashed();
@@ -43,6 +46,7 @@ class NewsController extends Controller
         ]);
     }
 
+    // Show the create form for a new article
     public function create(): View
     {
         return view('admin.news.create', [
@@ -50,9 +54,11 @@ class NewsController extends Controller
         ]);
     }
 
+    // Create an article and persist uploaded gallery images on the public disk
     public function store(Request $request): RedirectResponse
     {
         $validated = $this->validatedNewsData($request);
+        $validated = $this->applyPublishDateToPayload($validated);
         $storedGalleryImages = $this->storeUploadedGalleryImages($request);
         $validated = $this->applyGalleryImagesToPayload($validated, $storedGalleryImages);
 
@@ -65,6 +71,7 @@ class NewsController extends Controller
             ->with('success', 'News article "' . $article->title . '" created successfully.');
     }
 
+    // Show the edit form for an existing article
     public function edit(News $news): View
     {
         return view('admin.news.edit', [
@@ -73,9 +80,11 @@ class NewsController extends Controller
         ]);
     }
 
+    // Update article fields and synchronize gallery images (add/remove/limit)
     public function update(Request $request, News $news): RedirectResponse
     {
         $validated = $this->validatedNewsData($request);
+        $validated = $this->applyPublishDateToPayload($validated, $news);
         $existingImages = $news->all_image_paths;
         $removeImages = array_values(array_unique(array_filter((array) $request->input('remove_images', []), 'is_string')));
         $imagesToRemove = array_values(array_intersect($existingImages, $removeImages));
@@ -108,6 +117,7 @@ class NewsController extends Controller
             ->with('success', 'News article updated successfully.');
     }
 
+    // Soft-delete an article so it can still be restored
     public function destroy(News $news): RedirectResponse
     {
         $title = $news->title;
@@ -118,6 +128,7 @@ class NewsController extends Controller
             ->with('success', '"' . $title . '" has been moved to trash.');
     }
 
+    // Restore a previously soft-deleted article
     public function restore(int $id): RedirectResponse
     {
         $news = News::withTrashed()->findOrFail($id);
@@ -128,6 +139,7 @@ class NewsController extends Controller
             ->with('success', '"' . $news->title . '" has been restored.');
     }
 
+    // Toggle article status between published and draft
     public function toggleStatus(News $news): RedirectResponse
     {
         $news->update([
@@ -152,6 +164,7 @@ class NewsController extends Controller
             'content' => ['required', 'string'],
             'category' => ['required', 'in:' . implode(',', News::CATEGORIES)],
             'status' => ['required', 'in:' . News::STATUS_DRAFT . ',' . News::STATUS_PUBLISHED],
+            'publish_date' => ['nullable', 'date'],
             'is_featured' => ['nullable', 'boolean'],
             'gallery_images' => ['nullable', 'array', 'max:5'],
             'gallery_images.*' => ['file', 'mimes:jpg,jpeg', 'max:5120'],
@@ -185,6 +198,44 @@ class NewsController extends Controller
     {
         $payload['images'] = $images;
         $payload['image'] = $images[0] ?? null;
+
+        return $payload;
+    }
+
+    /**
+     * Map the admin "Publish Date" field to created_at (the date used in public displays).
+     *
+     * @param  array<string, mixed>  $payload
+     * @return array<string, mixed>
+     */
+    protected function applyPublishDateToPayload(array $payload, ?News $news = null): array
+    {
+        $publishDate = $payload['publish_date'] ?? null;
+        unset($payload['publish_date']);
+
+        if (! is_string($publishDate) || trim($publishDate) === '') {
+            return $payload;
+        }
+
+        $baseDate = Carbon::parse($publishDate);
+        $existingTimestamp = $news?->created_at;
+
+        // Preserve the existing time component on edit so only the date changes.
+        if ($existingTimestamp) {
+            $baseDate->setTime(
+                (int) $existingTimestamp->format('H'),
+                (int) $existingTimestamp->format('i'),
+                (int) $existingTimestamp->format('s')
+            );
+        } else {
+            $baseDate->setTime(
+                (int) now()->format('H'),
+                (int) now()->format('i'),
+                (int) now()->format('s')
+            );
+        }
+
+        $payload['created_at'] = $baseDate;
 
         return $payload;
     }

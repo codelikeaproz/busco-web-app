@@ -1,3 +1,5 @@
+{{-- View: admin/jobs/index.blade.php | Purpose: Admin module page template. --}}
+
 @extends('layouts.admin')
 
 @section('title', 'Job Hiring Management')
@@ -5,6 +7,7 @@
 @section('page_header_subtitle', 'Create and maintain job openings for the public Careers page, including hired/closed updates.')
 
 @section('content')
+{{-- Filter and search toolbar for admin job records --}}
 <section class="admin-section">
     <div class="form-card">
         <form method="GET" action="{{ route('admin.jobs.index') }}" class="form-grid" style="gap:12px;">
@@ -59,6 +62,7 @@
     </div>
 </section>
 
+{{-- Job openings table with edit/view/delete actions --}}
 <section class="admin-section">
     <div class="form-card" style="overflow:auto;">
         <table style="width:100%; border-collapse:collapse; min-width:1100px;">
@@ -120,6 +124,7 @@
         </table>
 
         @if($jobs->hasPages())
+            {{-- Compact shared pagination component --}}
             @include('partials.custom-pagination', [
                 'paginator' => $jobs,
                 'navLabel' => 'Admin job pagination',
@@ -129,6 +134,7 @@
     </div>
 </section>
 
+{{-- Responsive filter grid rules for tablet/mobile widths --}}
 <style>
     @media (max-width: 1080px) {
         .admin-panel [data-jobs-filter-grid] {

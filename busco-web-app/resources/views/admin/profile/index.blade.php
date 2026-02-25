@@ -1,3 +1,5 @@
+{{-- View: admin/profile/index.blade.php | Purpose: Admin module page template. --}}
+
 @php($adminUser = auth()->user())
 
 @extends('layouts.admin')
