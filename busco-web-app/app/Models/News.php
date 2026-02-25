@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class News extends Model
@@ -46,11 +47,7 @@ class News extends Model
     {
         $primaryPath = $this->primary_image_path;
 
-        if ($primaryPath && file_exists(storage_path('app/public/' . $primaryPath))) {
-            return asset('storage/' . $primaryPath);
-        }
-
-        return asset('images/no-image.jpg');
+        return $this->resolveImageUrl($primaryPath);
     }
 
     /**
@@ -88,9 +85,7 @@ class News extends Model
         foreach ($this->all_image_paths as $path) {
             $images[] = [
                 'path' => $path,
-                'url' => file_exists(storage_path('app/public/' . $path))
-                    ? asset('storage/' . $path)
-                    : asset('images/no-image.jpg'),
+                'url' => $this->resolveImageUrl($path),
             ];
         }
 
@@ -102,6 +97,19 @@ class News extends Model
         $source = trim((string) ($this->sub_title ?: $this->content));
 
         return Str::limit(strip_tags($source), 160);
+    }
+
+    protected function resolveImageUrl(?string $path): string
+    {
+        if (is_string($path) && preg_match('/^https?:\/\//i', $path)) {
+            return $path;
+        }
+
+        if (is_string($path) && $path !== '' && Storage::disk('public')->exists($path)) {
+            return asset('storage/' . ltrim($path, '/'));
+        }
+
+        return asset('images/no-image.svg');
     }
 
     public const CATEGORIES = [
