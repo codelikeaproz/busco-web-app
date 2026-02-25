@@ -48,7 +48,7 @@
     <div class="form-group">
         <label for="publish_date">Publish Date</label>
         <input id="publish_date" name="publish_date" type="date" class="form-input" value="{{ $publishDateValue }}">
-        <small style="display:block; margin-top:6px; color:#637266;">Uses the article publish date shown on public pages (saved using <code>created_at</code>).</small>
+        {{-- Publish Date reuses the News model created_at value for public display dates. --}}
         @error('publish_date')
             <span class="form-error">{{ $message }}</span>
         @enderror
