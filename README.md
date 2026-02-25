@@ -1,9 +1,19 @@
-# busco-web-app
-Website Application For Busco Sugar Milling Co Inc. during my Ojt, propose (Side-project)
+﻿# BUSCO Sugar Milling Website
 
-## Deploying to Railway
-The Laravel app lives in the **`busco-web-app`** folder. When connecting this repo to Railway:
-1. In your Railway service → **Settings** → **Source**, set **Root Directory** to **`busco-web-app`**.
-2. Set **Build Command** to: `composer install --no-dev && npm run build`
-3. Add env vars: `APP_KEY`, `APP_URL`, `APP_ENV=production`, `APP_DEBUG=false`, `LOG_CHANNEL=stderr`
-4. After deploy, go to **Networking** → **Generate Domain**, then set `APP_URL` to that URL.
+Live Website: https://buscosugarmill.up.railway.app
+
+## Project Overview
+
+This repository contains a proposed website application for BUSCO Sugar Milling Co., Inc., developed during On-the-Job Training (OJT).
+The project provides a public-facing platform for publishing company information, announcements, and updates.
+
+## Public Information Available
+
+- News and updates
+- Job hiring announcements
+- Quedan prices
+- Company profile information
+
+## Project Structure
+
+- `busco-web-app/` - Main Laravel application source code
