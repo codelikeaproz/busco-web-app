@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password as PasswordRule;
@@ -36,9 +37,22 @@ class PasswordResetController extends Controller
             return back()->with('success', 'If the email belongs to an admin account, a reset link has been sent.');
         }
 
-        $status = Password::broker()->sendResetLink([
-            'email' => $validated['email'],
-        ]);
+        try {
+            $status = Password::broker()->sendResetLink([
+                'email' => $validated['email'],
+            ]);
+        } catch (\Throwable $exception) {
+            // Avoid crashing the form when the configured mail transport is unavailable.
+            Log::error('Admin password reset email send failed.', [
+                'email' => $validated['email'],
+                'exception' => $exception::class,
+                'message' => $exception->getMessage(),
+            ]);
+
+            return back()
+                ->withErrors(['email' => 'Unable to send the reset link right now. Please try again in a few minutes.'])
+                ->onlyInput('email');
+        }
 
         if ($status === Password::RESET_LINK_SENT) {
             return back()->with('success', __($status));
