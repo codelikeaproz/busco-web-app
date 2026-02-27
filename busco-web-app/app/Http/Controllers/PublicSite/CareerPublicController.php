@@ -25,16 +25,24 @@ class CareerPublicController extends Controller
         if ($request->filled('employment_type')) {
             $query->where('employment_type', (string) $request->query('employment_type'));
         }
+        // Search for jobs by title, department, location, or summary
 
         if ($request->filled('search')) {
             $search = trim((string) $request->query('search'));
-            $query->where(function ($builder) use ($search): void {
-                $builder
-                    ->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('department', 'like', '%' . $search . '%')
-                    ->orWhere('location', 'like', '%' . $search . '%')
-                    ->orWhere('summary', 'like', '%' . $search . '%');
-            });
+
+            if ($search !== '') {
+                $operator = $query->getModel()->getConnection()->getDriverName() === 'pgsql'
+                    ? 'ilike'
+                    : 'like';
+
+                $query->where(function ($builder) use ($search, $operator): void {
+                    $builder
+                        ->where('title', $operator, '%' . $search . '%')
+                        ->orWhere('department', $operator, '%' . $search . '%')
+                        ->orWhere('location', $operator, '%' . $search . '%')
+                        ->orWhere('summary', $operator, '%' . $search . '%');
+                });
+            }
         }
 
         return view('pages.careers', [
