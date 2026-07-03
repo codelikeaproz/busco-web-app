@@ -1,6 +1,6 @@
 ﻿# BUSCO Sugar Milling Website
 
-Live Website: https://buscosugarmill.up.railway.app
+Live Website: https://buscosugarmillingco.vercel.app/
 
 ## Project Overview
 
