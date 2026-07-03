@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Reveal from "@/components/Reveal";
 import { getCareer } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 
@@ -52,7 +53,7 @@ export default async function CareerShowPage({ params }: Props) {
       </section>
 
       <section className="article-layout">
-        <article className="article-content reveal">
+        <Reveal as="article" className="article-content">
           {job.summary && <p className="article-highlight">{job.summary}</p>}
           <h2 style={{ fontSize: "1.8rem", marginTop: 0 }}>Job Description</h2>
           <div style={{ lineHeight: 1.9, color: "#32433a", whiteSpace: "pre-wrap" }}>{job.description}</div>
@@ -72,11 +73,11 @@ export default async function CareerShowPage({ params }: Props) {
             <Link className="btn btn-secondary" href="/careers">Back to Open Positions</Link>
             <a className="btn btn-primary" href={applyHref}>Apply via Email</a>
           </div>
-        </article>
+        </Reveal>
 
         <aside className="article-sidebar">
           {relatedJobs.length > 0 && (
-            <section className="sidebar-card reveal">
+            <Reveal as="section" className="sidebar-card">
               <div className="sidebar-head">Related Openings</div>
               {relatedJobs.map((related) => (
                 <Link key={related.slug} className="sidebar-link" href={`/careers/${related.slug}`}>
@@ -84,7 +85,7 @@ export default async function CareerShowPage({ params }: Props) {
                   <small>{related.department}</small>
                 </Link>
               ))}
-            </section>
+            </Reveal>
           )}
         </aside>
       </section>

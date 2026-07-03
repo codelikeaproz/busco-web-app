@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Pagination from "@/components/Pagination";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 import { clientFetch } from "@/lib/api";
 import { formatDate, formatDifference, trendUiClass } from "@/lib/format";
 import type { QuedanItem, QuedanResponse } from "@/lib/types";
@@ -38,7 +39,7 @@ export default function QuedanListing({ initial }: Props) {
 
       {active ? (
         <>
-          <article className="price-hero reveal">
+          <Reveal as="article" className="price-hero">
             <div className="price-hero-top">
               <span className="quedan-update-chip">Official Weekly Update</span>
               <div className="buying-price-head">BUSCO BUYING PRICE</div>
@@ -50,25 +51,25 @@ export default function QuedanListing({ initial }: Props) {
               <p>{active.price_subtext || "Net of Taxes & Liens"}</p>
             </div>
             <p className="buying-note buying-note-dark">{active.notes || "Note: Negros buying price is Gross Price and Busco buying price is Net Price."}</p>
-          </article>
+          </Reveal>
           <div className="price-grid">
-            <div className="price-metric reveal"><small>Previous Week</small><strong>{previous?.formatted_price ?? "N/A"}</strong></div>
-            <div className="price-metric reveal"><small>Difference</small><strong>{formatDifference(active.difference)}</strong></div>
-            <div className="price-metric reveal"><small>Trend</small><strong><span className={`trend ${trendClass}`}>{active.trend ?? "NO CHANGE"}</span></strong></div>
+            <Reveal className="price-metric"><small>Previous Week</small><strong>{previous?.formatted_price ?? "N/A"}</strong></Reveal>
+            <Reveal className="price-metric"><small>Difference</small><strong>{formatDifference(active.difference)}</strong></Reveal>
+            <Reveal className="price-metric"><small>Trend</small><strong><span className={`trend ${trendClass}`}>{active.trend ?? "NO CHANGE"}</span></strong></Reveal>
           </div>
         </>
       ) : (
-        <article className="price-hero reveal">
+        <Reveal as="article" className="price-hero">
           <div className="price-hero-top">
             <span className="quedan-update-chip">No Active Price Yet</span>
             <div className="buying-price-head">BUSCO BUYING PRICE</div>
             <h2>PHP 0.00</h2>
             <p>Post the first Quedan record in Admin to activate public display.</p>
           </div>
-        </article>
+        </Reveal>
       )}
 
-      <section className="history-table reveal">
+      <Reveal as="section" className="history-table">
         {loading && <p>Loading history...</p>}
         <table>
           <thead>
@@ -95,7 +96,7 @@ export default function QuedanListing({ initial }: Props) {
           </tbody>
         </table>
         <Pagination meta={data.history.meta} links={data.history.links} onPage={onPage} navLabel="Quedan history pagination" />
-      </section>
+      </Reveal>
     </section>
   );
 }

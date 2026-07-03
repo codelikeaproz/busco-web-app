@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Sugar Milling Process",
@@ -29,7 +30,11 @@ export default function ProcessPage() {
       </section>
       <div className="process-sections">
         {stages.map((stage) => (
-          <section key={stage.n} className={`process-stage reveal${stage.altClass ? ` ${stage.altClass}` : ""}`}>
+          <Reveal
+            as="section"
+            key={stage.n}
+            className={`process-stage${stage.altClass ? ` ${stage.altClass}` : ""}`}
+          >
             <div className={`section-shell process-stage-inner${stage.reverse ? " process-stage-inner-reverse" : ""}`}>
               <div className="process-stage-media">
                 <div className={`process-stage-badge process-stage-badge-${stage.badge}`}>{stage.n}</div>
@@ -46,7 +51,7 @@ export default function ProcessPage() {
                 </ul>
               </div>
             </div>
-          </section>
+          </Reveal>
         ))}
       </div>
     </>

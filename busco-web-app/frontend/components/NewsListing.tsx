@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Pagination from "@/components/Pagination";
+import Reveal from "@/components/Reveal";
 import { clientFetch } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 import type { NewsListItem, Paginated } from "@/lib/types";
@@ -59,15 +60,15 @@ export default function NewsListing({ initial, initialCategory }: Props) {
 
   return (
     <section className="page-shell">
-      <header className="page-header reveal">
+      <Reveal as="header" className="page-header">
         <div className="breadcrumb">
           <Link href="/">Home</Link><span> / </span><span>News & Achievements</span>
         </div>
         <h1 className="page-title">News & Achievements</h1>
         <p className="page-subtitle">Company announcements, milestones, awards, and events.</p>
-      </header>
+      </Reveal>
 
-      <div className="news-controls reveal" style={{ display: "flex", gap: 12, alignItems: "end", flexWrap: "wrap" }}>
+      <Reveal className="news-controls" style={{ display: "flex", gap: 12, alignItems: "end", flexWrap: "wrap" }}>
         <div style={{ display: "flex", gap: 12, alignItems: "end", flexWrap: "wrap", width: "100%" }}>
           <div className="control-group">
             <label htmlFor="newsCategory">Category</label>
@@ -91,11 +92,11 @@ export default function NewsListing({ initial, initialCategory }: Props) {
             )}
           </div>
         </div>
-      </div>
+      </Reveal>
 
       <div className="news-grid" id="newsGrid">
         {data.data.length ? data.data.map((article) => (
-          <Link key={article.id} className="news-card reveal" href={`/news/${article.id}`}>
+          <Reveal as="link" key={article.id} className="news-card" href={`/news/${article.id}`}>
             {article.image_url && !article.image_url.endsWith("no-image.svg") ? (
               <div className="news-thumb">
                 <img src={article.image_url} alt={article.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -119,7 +120,7 @@ export default function NewsListing({ initial, initialCategory }: Props) {
               <p className="news-excerpt">{article.sub_title || article.excerpt}</p>
               <div className="news-read">Read More -&gt;</div>
             </div>
-          </Link>
+          </Reveal>
         )) : (
           <div className="empty-state" style={{ display: "block" }}>
             <h3>No published articles yet</h3>

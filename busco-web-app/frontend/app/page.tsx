@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 import { getHome } from "@/lib/api";
 import { formatDate, formatDifference, trendUiClass } from "@/lib/format";
 
@@ -23,7 +24,7 @@ export default async function HomePage() {
     <>
       <section className="home-hero">
         <div className="hero-shell">
-          <div className="reveal">
+          <Reveal>
             <h1 className="hero-title">
               From Cane Fields to <span>Trusted Sugar Quality</span>
             </h1>
@@ -36,20 +37,20 @@ export default async function HomePage() {
               <div className="hero-stat"><strong>5K+</strong><span>Planter Partners</span></div>
               <div className="hero-stat"><strong>24/7</strong><span>Mill Operations</span></div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="section-shell">
-        <div className="reveal">
+        <Reveal>
           <span className="eyebrow">Latest Updates</span>
           <h2 className="section-title">Latest News & Achievements</h2>
           <p className="section-copy">Latest published BUSCO news articles from the database.</p>
-        </div>
+        </Reveal>
         <div className="news-preview-grid">
           {data.latest_news.length ? (
             data.latest_news.map((article) => (
-              <Link key={article.id} className="preview-card reveal" href={`/news/${article.id}`}>
+              <Reveal as="link" key={article.id} className="preview-card" href={`/news/${article.id}`}>
                 {article.image_url && !article.image_url.endsWith("no-image.svg") ? (
                   <div className="preview-thumb">
                     <img src={article.image_url} alt={article.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -70,27 +71,27 @@ export default async function HomePage() {
                   <h3 className="preview-title">{article.title}</h3>
                   <p className="preview-copy">{article.sub_title || article.excerpt}</p>
                 </div>
-              </Link>
+              </Reveal>
             ))
           ) : (
-            <div className="preview-card reveal" style={{ gridColumn: "1 / -1", textDecoration: "none", cursor: "default" }}>
+            <Reveal className="preview-card" style={{ gridColumn: "1 / -1", textDecoration: "none", cursor: "default" }}>
               <div className="preview-body">
                 <div className="preview-meta"><span className="pill">No News Yet</span></div>
                 <h3 className="preview-title">News preview will appear here after publishing articles.</h3>
                 <div style={{ marginTop: 10 }}><Link className="btn btn-secondary" href="/news">Open News Page</Link></div>
               </div>
-            </div>
+            </Reveal>
           )}
         </div>
-        <div className="reveal" style={{ marginTop: 16 }}><Link className="btn btn-secondary" href="/news">View All News</Link></div>
+        <Reveal style={{ marginTop: 16 }}><Link className="btn btn-secondary" href="/news">View All News</Link></Reveal>
       </section>
 
       <section className="section-shell section-alt">
-        <div className="reveal">
+        <Reveal>
           <span className="eyebrow">Current Announcement</span>
           <h2 className="section-title">Active Quedan Price</h2>
-        </div>
-        <div className="quedan-spotlight reveal">
+        </Reveal>
+        <Reveal className="quedan-spotlight">
           <div className="quedan-top">
             <div className="buying-price-head">BUSCO BUYING PRICE</div>
             <div className="buying-price-dates">
@@ -106,12 +107,12 @@ export default async function HomePage() {
             <span className={`trend ${trendUiClass(active?.trend)}`}>{active?.trend ?? "NO CHANGE"}</span>
           </div>
           <p className="buying-note">{active?.notes || "Note: Negros buying price is Gross Price and Busco buying price is Net Price."}</p>
-        </div>
-        <div className="reveal" style={{ marginTop: 14 }}><Link className="btn btn-secondary" href="/quedan">View Full Quedan Page</Link></div>
+        </Reveal>
+        <Reveal style={{ marginTop: 14 }}><Link className="btn btn-secondary" href="/quedan">View Full Quedan Page</Link></Reveal>
       </section>
 
       <section className="section-shell">
-        <div className="home-community-block reveal">
+        <Reveal className="home-community-block">
           <div className="home-community-media">
             <span className="home-community-accent home-community-accent-top" aria-hidden="true" />
             <img src="/img/training_events.webp" alt="BUSCO farmer training and community learning session" />
@@ -132,7 +133,7 @@ export default async function HomePage() {
             </ul>
             <Link className="btn btn-primary" href="/news?category=CSR%20/%20Community">View Our Impact</Link>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

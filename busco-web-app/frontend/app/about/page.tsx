@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "About",
@@ -15,7 +16,7 @@ export default function AboutPage() {
           title="About BUSCO"
           subtitle="Corporate background, industry role, and long-term commitment to quality sugar milling in Bukidnon."
         />
-        <div className="about-intro-block reveal">
+        <Reveal className="about-intro-block">
           <div className="about-intro-content">
             <h4 className="about-intro-kicker">Who We Are</h4>
             <h2 className="about-intro-title">Driving the Sweet Success of the Philippine Sugar Industry</h2>
@@ -37,15 +38,15 @@ export default function AboutPage() {
             <span className="about-intro-frame" aria-hidden="true" />
             <img src="/img/announcement.webp" alt="BUSCO Sugar Milling facility and operations" />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="section-shell section-alt">
-        <div className="about-history-head reveal">
+        <Reveal className="about-history-head">
           <h2 className="section-title">Our History</h2>
           <p className="section-copy">From a bold vision in Bukidnon to a recognized sugar milling leader, this is the BUSCO journey.</p>
-        </div>
-        <div className="about-history-timeline reveal">
+        </Reveal>
+        <Reveal className="about-history-timeline">
           <div className="about-history-line" aria-hidden="true" />
           {[
             { year: "1980", title: "Foundation", copy: "BUSCO was established in Butong, Quezon, Bukidnon to support the region's strong sugarcane potential.", side: "left", gold: true },
@@ -62,33 +63,33 @@ export default function AboutPage() {
               </div>
             </article>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="section-shell about-vm-section">
         <div className="about-vm-grid">
-          <article className="about-vm-card reveal">
+          <Reveal as="article" className="about-vm-card">
             <div className="about-vm-icon" aria-hidden="true">V</div>
             <div>
               <h3>Our Vision</h3>
               <p>To be a premier sugar milling company recognized for operational excellence, sustainable practices, and meaningful contribution to stakeholder and community prosperity.</p>
             </div>
-          </article>
-          <article className="about-vm-card reveal">
+          </Reveal>
+          <Reveal as="article" className="about-vm-card">
             <div className="about-vm-icon" aria-hidden="true">M</div>
             <div>
               <h3>Our Mission</h3>
               <p>To produce high-quality sugar products through efficient and reliable milling operations while supporting farmers, employees, and the Bukidnon community through responsible stewardship.</p>
             </div>
-          </article>
+          </Reveal>
         </div>
       </section>
 
       <section className="section-shell">
-        <div className="about-values-head reveal">
+        <Reveal className="about-values-head">
           <h4 className="about-intro-kicker">What Drives Us</h4>
           <h2 className="section-title">Our Core Values</h2>
-        </div>
+        </Reveal>
         <div className="about-values-grid">
           {[
             { icon: "S", title: "Safety", copy: "We prioritize the well-being of our workforce and surrounding communities in every operation." },
@@ -96,11 +97,11 @@ export default function AboutPage() {
             { icon: "C", title: "Community", copy: "We work as partners in progress for the growth and development of Bukidnon farming communities." },
             { icon: "G", title: "Growth", copy: "We embrace innovation and sustainable practices to support long-term resilience and shared success." },
           ].map((v) => (
-            <article key={v.title} className="about-value-card reveal">
+            <Reveal as="article" key={v.title} className="about-value-card">
               <div className="about-value-icon" aria-hidden="true">{v.icon}</div>
               <h3>{v.title}</h3>
               <p>{v.copy}</p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>

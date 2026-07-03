@@ -44,24 +44,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const reveals = document.querySelectorAll(".reveal");
-    if (!reveals.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 },
-    );
-    reveals.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
-  });
-
   return (
     <nav className="site-nav" aria-label="Primary navigation">
       <div className="nav-inner">

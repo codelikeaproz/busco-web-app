@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,7 +16,7 @@ export default function ContactPage() {
         subtitle="Reach our team for inquiries regarding milling operations, partnerships, and careers."
       />
       <div className="contact-grid">
-        <section className="contact-panel reveal">
+        <Reveal as="section" className="contact-panel">
           <h3>Office Information</h3>
           <p>For inquiries regarding milling operations, partnerships, and careers, contact our team through the channels below.</p>
           <ul className="contact-list">
@@ -24,14 +25,14 @@ export default function ContactPage() {
             <li><strong>Telefax:</strong> (02) 817-8403 / Local 143</li>
             <li><strong>Mobile:</strong> 0997-688-5420</li>
           </ul>
-        </section>
-        <section className="contact-map reveal">
+        </Reveal>
+        <Reveal as="section" className="contact-map">
           <h3>BUSCO Location Map</h3>
           <div className="contact-map-frame">
             <img className="contact-map-image" src="/img/busco_map.webp" alt="Satellite map of BUSCO Sugar Milling Co., Inc. in Quezon, Bukidnon" />
           </div>
           <p className="contact-map-note">Brgy. Butong, Quezon, Bukidnon, Philippines</p>
-        </section>
+        </Reveal>
       </div>
     </section>
   );

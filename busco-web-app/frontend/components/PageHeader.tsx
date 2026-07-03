@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 type Props = {
   crumbs: Array<{ label: string; href?: string }>;
@@ -8,7 +9,7 @@ type Props = {
 
 export default function PageHeader({ crumbs, title, subtitle }: Props) {
   return (
-    <header className="page-header reveal">
+    <Reveal as="header" className="page-header">
       <div className="breadcrumb">
         {crumbs.map((crumb, index) => (
           <span key={`${crumb.label}-${index}`}>
@@ -19,6 +20,6 @@ export default function PageHeader({ crumbs, title, subtitle }: Props) {
       </div>
       <h1 className="page-title">{title}</h1>
       <p className="page-subtitle">{subtitle}</p>
-    </header>
+    </Reveal>
   );
 }

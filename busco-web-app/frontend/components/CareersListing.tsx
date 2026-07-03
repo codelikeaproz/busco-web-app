@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Pagination from "@/components/Pagination";
+import Reveal from "@/components/Reveal";
 import { clientFetch } from "@/lib/api";
 import type { CareersResponse } from "@/lib/types";
 
@@ -107,7 +108,7 @@ export default function CareersListing({ initial }: Props) {
 
   return (
     <section className="page-shell">
-      <header className="page-header reveal">
+      <Reveal as="header" className="page-header">
         <div className="breadcrumb">
           <Link href="/">Home</Link><span> / </span><span>Careers</span>
         </div>
@@ -115,17 +116,17 @@ export default function CareersListing({ initial }: Props) {
         <p className="page-subtitle">
           Explore current openings at BUSCO. Applications are handled through our HR email and reviewed by the recruitment team.
         </p>
-      </header>
+      </Reveal>
 
-      <section className="surface reveal" style={{ padding: 22 }}>
+      <Reveal as="section" className="surface" style={{ padding: 22 }}>
         <h2 className="section-title" style={{ fontSize: "clamp(26px, 3.3vw, 36px)" }}>Open Positions</h2>
         <p className="section-copy" style={{ marginBottom: 0 }}>
           To apply, send your resume and application letter to{" "}
           <a href="mailto:hrd_buscosugarmill@yahoo.com" style={{ color: "var(--green-mid)", fontWeight: 600 }}>hrd_buscosugarmill@yahoo.com</a>.
         </p>
-      </section>
+      </Reveal>
 
-      <div className="careers-controls reveal">
+      <Reveal className="careers-controls">
         <div className="search-box">
           <span className="search-icon" aria-hidden="true" style={{ fontSize: 15, left: 13 }}>⌕</span>
           <input
@@ -163,20 +164,20 @@ export default function CareersListing({ initial }: Props) {
         <div className="result-count" style={{ marginLeft: "auto" }}>
           {loading ? "Loading..." : <><strong>{data.meta.total}</strong> open position{data.meta.total === 1 ? "" : "s"}</>}
         </div>
-      </div>
+      </Reveal>
 
       {error !== "" && (
-        <div className="surface reveal" style={{ padding: 18, marginTop: 18, border: "1px solid #f2c6c6", background: "#fff7f7" }}>
+        <Reveal className="surface" style={{ padding: 18, marginTop: 18, border: "1px solid #f2c6c6", background: "#fff7f7" }}>
           <h3 style={{ margin: "0 0 6px", color: "#9b2c2c" }}>Could not refresh careers</h3>
           <p style={{ margin: 0, color: "#6b3d3d", lineHeight: 1.7 }}>{error}</p>
-        </div>
+        </Reveal>
       )}
 
       {data.data.length ? (
         <>
           <div className="careers-grid">
             {data.data.map((job) => (
-              <article key={job.slug} className="career-card reveal">
+              <Reveal as="article" key={job.slug} className="career-card">
                 <div className="career-card-top">
                   <span className="career-pill career-pill-dept">{job.department}</span>
                   <span className="career-pill career-pill-type">{job.employment_type}</span>
@@ -191,16 +192,16 @@ export default function CareersListing({ initial }: Props) {
                 <Link href={`/careers/${job.slug}`} className="career-card-action">
                   <span>View Details</span><span aria-hidden="true">→</span>
                 </Link>
-              </article>
+              </Reveal>
             ))}
           </div>
           <Pagination meta={data.meta} links={data.links} onPage={onPage} navLabel="Careers pagination" />
         </>
       ) : (
-        <div className="surface reveal" style={{ padding: 22, marginTop: 20 }}>
+        <Reveal className="surface" style={{ padding: 22, marginTop: 20 }}>
           <h3 style={{ margin: "0 0 8px", color: "var(--green)", fontFamily: "'Playfair Display', serif" }}>No Open Positions Found</h3>
           <p style={{ margin: 0, color: "var(--muted)", lineHeight: 1.7 }}>Try changing the filters or check back later for new opportunities.</p>
-        </div>
+        </Reveal>
       )}
     </section>
   );

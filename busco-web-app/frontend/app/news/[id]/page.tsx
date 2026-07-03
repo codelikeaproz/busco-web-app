@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Reveal from "@/components/Reveal";
 import { getNewsArticle } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 
@@ -47,7 +48,7 @@ export default async function NewsShowPage({ params }: Props) {
       </section>
 
       <section className="article-layout">
-        <article className="article-content reveal">
+        <Reveal as="article" className="article-content">
           {article.gallery_images.length > 0 && (
             <div className="article-gallery">
               {article.gallery_images.map((img) => (
@@ -61,17 +62,17 @@ export default async function NewsShowPage({ params }: Props) {
           <div style={{ marginTop: 18 }}>
             <Link className="btn btn-secondary" href="/news">Back to News</Link>
           </div>
-        </article>
+        </Reveal>
 
         <aside className="article-sidebar">
-          <section className="sidebar-card reveal">
+          <Reveal as="section" className="sidebar-card">
             <div className="sidebar-head">Article Info</div>
-            <div className="sidebar-row"><span>Category</span><strong>{article.category}</strong></div>
-            <div className="sidebar-row"><span>Published</span><strong>{formatDate(article.created_at, "long")}</strong></div>
-          </section>
+            <div className="sidebar-row"><small>Category</small><strong>{article.category}</strong></div>
+            <div className="sidebar-row"><small>Published</small><strong>{formatDate(article.created_at, "long")}</strong></div>
+          </Reveal>
 
           {related.length > 0 && (
-            <section className="sidebar-card reveal">
+            <Reveal as="section" className="sidebar-card">
               <div className="sidebar-head">Related Articles</div>
               {related.map((item) => (
                 <Link key={item.id} className="sidebar-link" href={`/news/${item.id}`}>
@@ -79,7 +80,7 @@ export default async function NewsShowPage({ params }: Props) {
                   <small>{formatDate(item.created_at)}</small>
                 </Link>
               ))}
-            </section>
+            </Reveal>
           )}
         </aside>
       </section>

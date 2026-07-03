@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Services & Operations",
@@ -23,10 +24,10 @@ export default function ServicesPage() {
       />
       <div className="info-grid">
         {services.map((s) => (
-          <article key={s.title} className="info-card reveal">
+          <Reveal as="article" key={s.title} className="info-card">
             <h3>{s.title}</h3>
             <p>{s.copy}</p>
-          </article>
+          </Reveal>
         ))}
       </div>
     </section>
