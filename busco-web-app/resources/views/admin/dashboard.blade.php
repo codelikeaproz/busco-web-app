@@ -33,7 +33,7 @@
         <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;">
             <div>
                 <div style="font-size:.78rem; color:#637266; text-transform:uppercase; letter-spacing:.08em; font-weight:700;">Active Quedan Price</div>
-                <div style="margin-top:4px; font-family:'Playfair Display', serif; color:#183f1d; font-size:1.35rem;">
+                <div class="admin-stat-value">
                     {{ $stats['active_quedan']?->formatted_price ?? 'N/A' }}
                 </div>
             </div>
@@ -66,7 +66,7 @@
 <section class="admin-section">
     <div data-dashboard-lower-grid style="display:grid; gap:16px; grid-template-columns: 1fr 1fr;">
         <div class="form-card" style="height:100%;">
-            <h2 style="margin:0 0 8px; color:#183f1d; font-family:'Playfair Display', serif;">Quick Actions</h2>
+            <h2 class="admin-section-title">Quick Actions</h2>
             <p style="margin:0 0 12px; color:#607062;">Jump directly to the most common admin tasks.</p>
             <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:10px;">
                 <a class="btn-admin-secondary" href="{{ route('admin.profile.index') }}" style="text-align:center; text-decoration:none;">Profile</a>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="form-card" style="height:100%;">
-            <h2 style="margin:0 0 8px; color:#183f1d; font-family:'Playfair Display', serif;">Latest News Record</h2>
+            <h2 class="admin-section-title">Latest News Record</h2>
             @if($stats['last_news'])
                 <div style="padding:12px; border:1px solid #e8eee3; border-radius:12px; background:#fbfdf9;">
                     <div style="font-weight:700; color:#1c3d20;">{{ $stats['last_news']->title }}</div>

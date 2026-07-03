@@ -19,7 +19,7 @@
 
 {{-- Current active Quedan record summary and quick edit action --}}
 <section class="admin-section">
-    <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif;">Active Price</h2>
+    <h2 class="admin-section-title">Active Price</h2>
     <div class="form-card">
         @if($active)
             <div data-quedan-active-top style="display:grid; gap:10px; grid-template-columns: repeat(5, minmax(0, 1fr));">
@@ -56,7 +56,7 @@
 
 {{-- Archived Quedan history table with edit/delete actions --}}
 <section class="admin-section">
-    <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif;">Archived History</h2>
+    <h2 class="admin-section-title">Archived History</h2>
     <div class="form-card" style="overflow:auto;">
         <table style="width:100%; border-collapse:collapse; min-width:820px;">
             <thead>

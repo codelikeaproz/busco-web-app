@@ -11,13 +11,13 @@
     <link rel="shortcut icon" href="{{ asset('img/busco_logo.jpg') }}?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/busco-static.css') }}">
     <style>
-        body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at top, #e9f2e3 0%, #f6f8f2 45%, #eef3ea 100%); padding: 20px; }
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at top, #e9f2e3 0%, #f6f8f2 45%, #eef3ea 100%); padding: 20px; font-family: "DM Sans", system-ui, sans-serif; }
         .login-wrap { width: min(100%, 420px); background: #fff; border-radius: 18px; border: 1px solid #e3eadb; box-shadow: 0 20px 45px rgba(24, 54, 29, .1); padding: 24px; }
         .login-kicker { color: #2e7d32; text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; font-weight: 700; }
-        .login-title { margin: 8px 0 6px; color: #133a18; font-family: "Playfair Display", serif; font-size: 1.8rem; }
+        .login-title { margin: 8px 0 6px; color: #133a18; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
         .login-copy { margin: 0 0 16px; color: #647266; }
         .form-group { display: grid; gap: 6px; margin-bottom: 12px; }
         .form-group label { font-weight: 600; color: #213b25; }
@@ -36,6 +36,7 @@
 <body>
     <section class="login-wrap" aria-labelledby="admin-login-title">
         @include('partials.flash-messages')
+        @include('partials.admin-toast-bridge')
 
         <div class="login-kicker">Administrator Access</div>
         <h1 class="login-title" id="admin-login-title">BUSCO Admin Login</h1>
@@ -69,5 +70,6 @@
             </div>
         </form>
     </section>
+    <script src="{{ asset('js/admin-toasts.js') }}"></script>
 </body>
 </html>

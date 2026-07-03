@@ -11,71 +11,86 @@
     <link rel="shortcut icon" href="{{ asset('img/busco_logo.jpg') }}?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/busco-static.css') }}">
     <style>
-        .admin-shell { display: grid; grid-template-columns: 210px 1fr; min-height: 100vh; background: #f3f6ee; }
+        .admin-shell {
+            display: grid;
+            grid-template-columns: 252px 1fr;
+            min-height: 100vh;
+            background: #f3f6ee;
+            font-family: "DM Sans", system-ui, sans-serif;
+        }
         .admin-sidebar {
             background: linear-gradient(180deg, #113d15 0%, #1b5e20 55%, #255f2d 100%);
             color: #fff;
-            padding: 10px 12px 12px;
+            padding: 16px 14px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             min-height: 100vh;
             box-shadow: inset -1px 0 0 rgba(255,255,255,.08);
         }
         .admin-sidebar-top { display: grid; gap: 12px; }
         .admin-brand {
-            font-family: "Playfair Display", serif;
-            font-size: 1rem;
-            line-height: 1.2;
-            margin-bottom: 2px;
-            padding: 10px 8px 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.25;
+            padding: 8px 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            margin-bottom: 4px;
         }
         .admin-brand small {
             display: block;
-            font-family: "DM Sans", sans-serif;
             opacity: .82;
-            font-size: .68rem;
-            letter-spacing: .11em;
+            font-size: .65rem;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            margin-top: 5px;
-            white-space: nowrap;
+            margin-top: 4px;
+            font-weight: 500;
         }
         .admin-user {
-            padding: 10px;
+            padding: 12px;
             border-radius: 10px;
             background: rgba(255,255,255,.08);
             border: 1px solid rgba(255,255,255,.06);
             display: grid;
-            grid-template-columns: 34px 1fr;
+            grid-template-columns: 38px 1fr;
             align-items: center;
             gap: 10px;
+            margin-bottom: 4px;
         }
         .admin-user-avatar {
-            width: 34px;
-            height: 34px;
+            width: 38px;
+            height: 38px;
             border-radius: 999px;
             display: grid;
             place-items: center;
             font-weight: 700;
-            font-size: .85rem;
+            font-size: .8rem;
             color: #5a3e00;
             background: #f9a825;
             box-shadow: inset 0 -1px 0 rgba(0,0,0,.14);
         }
         .admin-user-meta { min-width: 0; }
+        .admin-user-label {
+            font-size: .68rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: rgba(255,255,255,.65);
+            margin-bottom: 2px;
+        }
         .admin-user-name {
-            font-size: .84rem;
-            font-weight: 700;
-            line-height: 1.2;
+            font-size: .92rem;
+            font-weight: 600;
+            line-height: 1.35;
             color: #fff;
+            word-break: break-word;
         }
         .admin-user-email {
             margin-top: 3px;
             font-size: .78rem;
             color: rgba(255,255,255,.82);
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -83,7 +98,7 @@
         .admin-nav a {
             color: rgba(255,255,255,.92);
             text-decoration: none;
-            padding: 10px 11px;
+            padding: 11px 12px;
             border-radius: 10px;
             border: 1px solid transparent;
             background: rgba(255,255,255,.02);
@@ -92,6 +107,7 @@
             gap: 10px;
             position: relative;
             font-weight: 500;
+            font-size: 0.9rem;
         }
         .admin-nav a:hover {
             background: rgba(255,255,255,.06);
@@ -113,17 +129,17 @@
             background: #f9a825;
         }
         .admin-nav-icon {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            flex: 0 0 16px;
+            flex: 0 0 18px;
             color: currentColor;
             opacity: .95;
         }
-        .admin-nav-icon svg { width: 16px; height: 16px; display: block; }
-        .admin-sidebar-footer { margin-top: 10px; padding-top: 10px; }
+        .admin-nav-icon svg { width: 18px; height: 18px; display: block; }
+        .admin-sidebar-footer { margin-top: auto; padding-top: 12px; }
         .admin-sidebar-footer button {
             width: 100%;
             background: rgba(255,255,255,.08);
@@ -164,9 +180,10 @@
         .admin-topbar-title {
             margin: 4px 0 0;
             color: #163f1a;
-            font-family: "Playfair Display", serif;
             font-size: 1.12rem;
-            line-height: 1.15;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
         }
         .admin-topbar-subtitle {
             margin: 2px 0 0;
@@ -190,8 +207,21 @@
             text-align: center;
             padding: 8px 4px 2px;
         }
-        .admin-page-header h1 { margin: 0; color: #163f1a; font-family: "Playfair Display", serif; }
+        .admin-page-header h1 { margin: 0; color: #163f1a; font-weight: 700; }
         .admin-page-header p { margin: 6px 0 0; color: #617066; }
+        .admin-section-title {
+            margin: 0 0 8px;
+            color: #183f1d;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .admin-stat-value {
+            margin-top: 4px;
+            color: #183f1d;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
         .admin-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 16px; }
         .stat-card { background: #f7f9f5; border: 1px solid #e6ecdf; border-radius: 14px; padding: 14px; }
         .stat-card .label { font-size: .82rem; color: #637266; }
@@ -212,6 +242,47 @@
         .flash-warning { border-color: #f0ddb0; background: #fff9eb; color: #7e5b09; }
         .flash-text { flex: 1; }
         .flash-close { background: transparent; border: none; font-size: 1.1rem; line-height: 1; cursor: pointer; color: inherit; }
+        .admin-toast-container {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1300;
+            display: grid;
+            gap: 10px;
+            width: min(360px, calc(100vw - 32px));
+            pointer-events: none;
+        }
+        .admin-toast {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(20, 50, 20, .12);
+            opacity: 0;
+            transform: translateX(12px);
+            transition: opacity .2s ease, transform .2s ease;
+            pointer-events: auto;
+        }
+        .admin-toast.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .admin-toast-text {
+            flex: 1;
+            font-size: .9rem;
+            line-height: 1.45;
+        }
+        .admin-toast-close {
+            background: transparent;
+            border: none;
+            font-size: 1.15rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+        }
         .admin-modal-overlay {
             position: fixed;
             inset: 0;
@@ -238,8 +309,8 @@
         .admin-modal-title {
             margin: 0;
             color: #173f1b;
-            font-family: "Playfair Display", serif;
-            font-size: 1.12rem;
+            font-size: 1.05rem;
+            font-weight: 700;
         }
         .admin-modal-body {
             padding: 14px 16px;
@@ -301,6 +372,7 @@
             </header>
             {{-- Shared flash and validation feedback --}}
             @include('partials.flash-messages')
+            @include('partials.admin-toast-bridge')
             {{-- Admin page body --}}
             <div class="admin-panel">
                 @yield('content')
@@ -493,5 +565,8 @@
             window.setInterval(checkIdle, 15000);
         })();
     </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+    <script src="{{ asset('js/admin-toasts.js') }}"></script>
 </body>
 </html>

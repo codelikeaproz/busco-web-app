@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 // JobOpening model for the job openings table.
 // Used by both the public careers pages and the admin hiring module.
 class JobOpening extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'title',
         'slug',
@@ -50,7 +53,27 @@ class JobOpening extends Model
     // Scope to filter job openings visible on the public careers page.
     public function scopePubliclyOpen($query)
     {
-        return $query->where('status', self::STATUS_OPEN);
+        return $query
+            ->where('status', self::STATUS_OPEN)
+            ->where(function ($builder): void {
+                $builder
+                    ->whereNull('deadline_at')
+                    ->orWhereDate('deadline_at', '>=', now()->toDateString());
+            });
+    }
+
+    // Whether this job should appear on the public careers page.
+    public function isPubliclyOpen(): bool
+    {
+        if ($this->status !== self::STATUS_OPEN) {
+            return false;
+        }
+
+        if ($this->deadline_at === null) {
+            return true;
+        }
+
+        return $this->deadline_at->gte(Carbon::today());
     }
 
     // Scope to filter job openings by status

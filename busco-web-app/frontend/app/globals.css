@@ -1,0 +1,6 @@
+/* Minimal reset — BUSCO styles live in /css/busco-static.css */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}

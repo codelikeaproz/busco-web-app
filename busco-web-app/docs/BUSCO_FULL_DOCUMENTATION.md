@@ -2230,81 +2230,47 @@ public function getImageUrlAttribute(): string
 
 ---
 
-## 19. Deployment Guide (Railway)
+## 19. Deployment Guide (Vercel + Render + Supabase + Cloudinary)
 
-### 19.1 Step-by-Step
+> **Primary reference:** [docs/DEPLOYMENT_VERCEL_RENDER.md](DEPLOYMENT_VERCEL_RENDER.md)
 
-```bash
-# Step 1: Push project to GitHub
-git add .
-git commit -m "Initial BUSCO website deployment"
-git push origin main
+| Service | Role |
+|---------|------|
+| Vercel | Next.js public site (`frontend/`) |
+| Render | Laravel API + Blade admin (`Dockerfile`) |
+| Supabase | PostgreSQL |
+| Cloudinary | News image CDN |
 
-# Step 2: On Railway (railway.app)
-# - Create new project
-# - "Deploy from GitHub repo"
-# - Select your repository
+### 19.1 Render (Laravel backend)
 
-# Step 3: Add PostgreSQL
-# - Click "+ Add Service"
-# - Select "Database" → "PostgreSQL"
-# - Railway provides DB credentials automatically
+- Deploy from repo root using `render.yaml` and `Dockerfile`
+- Set `DATABASE_URL` to Supabase pooler URI
+- Set `FRONTEND_URL` to your Vercel production URL (enables public-route redirects)
+- Set `CORS_ALLOWED_ORIGINS` to Vercel preview + production URLs
+- Set `NEWS_IMAGE_DISK=cloudinary` and `CLOUDINARY_URL`
 
-# Step 4: Configure environment variables
-# In Railway → Your Laravel Service → Variables tab, add:
-APP_NAME="BUSCO Sugar Milling"
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://your-app.railway.app
-APP_KEY=  ← Generate with: php artisan key:generate --show
+### 19.2 Vercel (Next.js frontend)
 
-DB_CONNECTION=pgsql
-DB_HOST=     ← From Railway PostgreSQL service
-DB_PORT=5432
-DB_DATABASE= ← From Railway PostgreSQL service
-DB_USERNAME= ← From Railway PostgreSQL service
-DB_PASSWORD= ← From Railway PostgreSQL service
-
-FILESYSTEM_DISK=public
-```
-
-### 19.2 Procfile (Required for Railway)
-
-```
-# Create Procfile in project root
-web: php artisan serve --host=0.0.0.0 --port=$PORT
-```
-
-Or use a `railway.json`:
-```json
-{
-  "$schema": "https://railway.app/railway.schema.json",
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "startCommand": "php artisan migrate --force && php artisan db:seed --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=$PORT"
-  }
-}
-```
+- Root directory: `frontend`
+- Env: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_ADMIN_URL`
 
 ### 19.3 Post-Deployment Checklist
 
 ```bash
-# Run via Railway console tab:
+# Render console:
 php artisan migrate --force
-php artisan db:seed --class=AdminSeeder
-php artisan storage:link
+php artisan news:migrate-images-to-cloudinary  # if migrating from Railway local storage
 
 # Verify:
-# ✅ https://your-app.railway.app loads
-# ✅ https://your-app.railway.app/admin/login works
-# ✅ Login with admin@busco.com credentials
-# ✅ Change password immediately ← ITEM #6
-# ✅ Create 1 test news article
-# ✅ Post 1 Quedan price
-# ✅ Verify public pages show DB data
+# ✅ Vercel public site loads (home, news, careers, quedan)
+# ✅ Render /admin/login works
+# ✅ API /api/home returns JSON
+# ✅ News upload stores image on Cloudinary
 ```
+
+### 19.4 Legacy Railway
+
+See [docs/records/railway.md](records/railway.md) for the previous single-host deployment.
 
 ---
 
@@ -2312,14 +2278,17 @@ php artisan storage:link
 
 ```
 ✅  Password hashing         — bcrypt via Laravel's 'hashed' cast on User model
-✅  CSRF protection          — @csrf in every POST/PUT/DELETE form
-✅  Route middleware         — ['auth'] on all /admin/* routes
+✅  CSRF protection          — @csrf in every POST/PUT/DELETE admin form
+✅  Route middleware         — ['auth', 'admin'] on all /admin/* routes
 ✅  Input validation         — $request->validate() in every store/update method
 ✅  SQL injection            — Eloquent ORM with parameter binding (no raw queries)
-✅  File upload validation   — mimes:jpg,jpeg,png,webp + max:2048 rule
+✅  File upload validation   — mimes:jpg,jpeg + max:5120 KB on gallery uploads
+✅  Cloudinary storage       — production images on HTTPS CDN (not ephemeral disk)
+✅  API rate limiting        — throttle:60,1 on /api/* routes
+✅  CORS                     — config/cors.php restricts origins to FRONTEND_URL
 ✅  APP_DEBUG=false          — In production .env (never expose stack traces)
 ✅  APP_ENV=production       — In production .env
-✅  HTTPS enforced           — Via Railway SSL (automatic)
+✅  HTTPS enforced           — Render + Vercel SSL (automatic)
 ✅  Soft deletes             — No accidental permanent data loss on news
 ✅  remember_token           — Present in users table for session stability
 ✅  Decimal for money        — No float rounding errors on Quedan prices

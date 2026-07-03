@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobOpening;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,7 +13,7 @@ use Illuminate\View\View;
 class JobController extends Controller
 {
     // List jobs with admin filters and search options
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $query = JobOpening::query();
 
@@ -38,13 +39,21 @@ class JobController extends Controller
             });
         }
 
+        $jobs = $query
+            ->orderByDesc('posted_at')
+            ->orderByDesc('created_at')
+            ->orderByDesc('id')
+            ->paginate(10)
+            ->withQueryString();
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('admin.jobs._results', compact('jobs'))->render(),
+            ]);
+        }
+
         return view('admin.jobs.index', [
-            'jobs' => $query
-                ->orderByDesc('posted_at')
-                ->orderByDesc('created_at')
-                ->orderByDesc('id')
-                ->paginate(10)
-                ->withQueryString(),
+            'jobs' => $jobs,
             'departments' => JobOpening::query()
                 ->select('department')
                 ->distinct()

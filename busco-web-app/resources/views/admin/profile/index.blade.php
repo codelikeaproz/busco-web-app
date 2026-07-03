@@ -12,7 +12,7 @@
 <section class="admin-section">
     <div data-profile-grid style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px; align-items:start;">
         <div class="form-card" style="height:100%;">
-            <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif; font-size:1.15rem;">Account Details</h2>
+            <h2 class="admin-section-title">Account Details</h2>
             <p style="margin:0 0 14px; color:#607062;">Update your display name for the admin panel. Email remains your login identifier.</p>
 
             <form method="POST" action="{{ route('admin.profile.update') }}" class="form-grid">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-card" style="height:100%;">
-            <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif; font-size:1.15rem;">Change Password</h2>
+            <h2 class="admin-section-title">Change Password</h2>
             <p style="margin:0 0 14px; color:#607062;">Update your administrator account password. Use at least 8 characters.</p>
 
             <form method="POST" action="{{ route('admin.profile.password.update') }}" class="form-grid">

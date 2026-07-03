@@ -9,7 +9,7 @@
 @section('content')
 <section class="admin-section">
     <div class="form-card" style="margin-bottom:14px;">
-        <h2 style="margin:0 0 10px; color:#183f1d; font-family:'Playfair Display', serif; font-size:1.2rem;">Record Context</h2>
+        <h2 class="admin-section-title">Record Context</h2>
         <div data-quedan-edit-context-top style="display:grid; gap:10px; grid-template-columns: repeat(4, minmax(0, 1fr));">
             <div style="padding:10px 12px; border-radius:10px; background:#fbfdf9; border:1px solid #e8eee3;"><small style="color:#637266;">Status</small><div style="font-weight:700;">{{ ucfirst($quedan->status) }}</div></div>
             <div style="padding:10px 12px; border-radius:10px; background:#fbfdf9; border:1px solid #e8eee3;"><small style="color:#637266;">Trading Date</small><div style="font-weight:700;">{{ $quedan->trading_date?->format('M d, Y') }}</div></div>

@@ -1,0 +1,30 @@
+name: Free Tier Monitoring
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render (prevent sleep)
+        run: |
+          if [ -n "${{ secrets.RENDER_HEALTH_URL }}" ]; then
+            curl -fsS "${{ secrets.RENDER_HEALTH_URL }}"
+          fi
+          if [ -n "${{ secrets.RENDER_API_URL }}" ]; then
+            curl -fsS "${{ secrets.RENDER_API_URL }}/api/home"
+          fi
+
+      - name: Keep Supabase active
+        run: |
+          if [ -n "${{ secrets.RENDER_API_URL }}" ]; then
+            curl -fsS "${{ secrets.RENDER_API_URL }}/up" || true
+          fi
+
+      - name: Reminder
+        run: |
+          echo "Monitor Cloudinary usage at https://cloudinary.com/console"
+          echo "Supabase free tier pauses after 7 days without DB activity — ensure daily pings run."

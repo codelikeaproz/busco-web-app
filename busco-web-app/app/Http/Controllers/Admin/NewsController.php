@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Services\NewsImageStorage;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 // Admin CRUD controller for news articles, status toggles, and gallery uploads
 class NewsController extends Controller
 {
+    public function __construct(private NewsImageStorage $images) {}
     // List all articles (including trashed) with admin filters
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $query = News::withTrashed();
 
@@ -35,8 +37,16 @@ class NewsController extends Controller
             }
         }
 
+        $news = $query->orderByDesc('created_at')->orderByDesc('id')->paginate(10)->withQueryString();
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('admin.news._results', compact('news'))->render(),
+            ]);
+        }
+
         return view('admin.news.index', [
-            'news' => $query->orderByDesc('created_at')->orderByDesc('id')->paginate(10)->withQueryString(),
+            'news' => $news,
             'categories' => News::CATEGORIES,
             'filters' => [
                 'category' => (string) $request->query('category', ''),
@@ -94,7 +104,7 @@ class NewsController extends Controller
 
         if (count($remainingImages) + count($uploadedImages) > 5) {
             foreach ($uploadedImages as $path) {
-                Storage::disk('public')->delete($path);
+                $this->images->delete($path);
             }
 
             throw ValidationException::withMessages([
@@ -103,7 +113,7 @@ class NewsController extends Controller
         }
 
         foreach ($imagesToRemove as $path) {
-            Storage::disk('public')->delete($path);
+            $this->images->delete($path);
         }
 
         $validated = $this->applyGalleryImagesToPayload($validated, $finalImages);
@@ -182,7 +192,7 @@ class NewsController extends Controller
 
         foreach ((array) $request->file('gallery_images', []) as $file) {
             if ($file) {
-                $stored[] = $file->store('news', 'public');
+                $stored[] = $this->images->store($file);
             }
         }
 

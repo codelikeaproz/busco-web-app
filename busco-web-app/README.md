@@ -1,30 +1,53 @@
 ﻿# BUSCO Sugar Milling Website
 
-Live Website: https://buscosugarmill.up.railway.app
+## Architecture (split stack)
 
-## Overview
+| Layer | Service | Path |
+|-------|---------|------|
+| Public frontend | **Vercel** (Next.js) | [`frontend/`](frontend/) |
+| API + Admin | **Render** (Laravel) | Repo root |
+| Database | **Supabase** (PostgreSQL) | — |
+| Images | **Cloudinary** | — |
 
-BUSCO Sugar Milling Website is a web application designed to present company information and official updates in a clear and accessible format.
-It includes a public website for visitors and an administrative interface for content management.
+Legacy monolith URL (Railway): https://buscosugarmill.up.railway.app
 
-## Public Website Content
+## Quick start (local)
 
-- Company news and updates
-- Job hiring announcements
-- Quedan price information
-- Company profile details
+**Laravel API + admin** (port 8000):
 
-## Main Features
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
 
-- News publishing with draft and published status options
-- Multiple image uploads for news articles
-- Editable publish date for news entries
-- Administrative content management for news, job postings, and quedan prices
+**Next.js frontend** (port 3000):
+
+```bash
+cd frontend
+cp .env.example .env.local
+npm install
+npm run dev
+```
+
+Set `NEXT_PUBLIC_API_URL=http://localhost:8000` in `frontend/.env.local`.
+
+## Deployment
+
+See [docs/DEPLOYMENT_VERCEL_RENDER.md](docs/DEPLOYMENT_VERCEL_RENDER.md) for Render, Vercel, Supabase, and Cloudinary env vars.
+
+- Vercel project root directory: `frontend`
+- Render: uses [`Dockerfile`](Dockerfile) and [`render.yaml`](render.yaml)
+- Set `FRONTEND_URL` on Render to your Vercel URL (public Laravel routes redirect to Next.js)
+
+## API
+
+Public read-only JSON at `/api/*`. Contract: [docs/API_CONTRACT.md](docs/API_CONTRACT.md).
 
 ## Tech Stack
 
-- Laravel (PHP)
-- Blade templates
-- Vite + Tailwind CSS
-- PostgreSQL
-- Railway (deployment hosting)
+- **Backend:** Laravel 12, Blade admin, PostgreSQL
+- **Frontend:** Next.js (App Router), TypeScript
+- **Images:** Cloudinary (production) or local disk (development)

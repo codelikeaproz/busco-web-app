@@ -1,0 +1,26 @@
+name: Keep Alive
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render health endpoint
+        run: |
+          if [ -n "${{ secrets.RENDER_HEALTH_URL }}" ]; then
+            curl -fsS "${{ secrets.RENDER_HEALTH_URL }}" || true
+          else
+            echo "RENDER_HEALTH_URL secret not set — skip"
+          fi
+
+      - name: Ping API home endpoint
+        run: |
+          if [ -n "${{ secrets.RENDER_API_URL }}" ]; then
+            curl -fsS "${{ secrets.RENDER_API_URL }}/api/home" || true
+          else
+            echo "RENDER_API_URL secret not set — skip"
+          fi

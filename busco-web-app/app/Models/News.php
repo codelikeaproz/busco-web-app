@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use App\Services\NewsImageStorage;
 
 // News model for the news table.
 // Handles article status, categories, and stored gallery image paths.
 class News extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
@@ -109,15 +111,11 @@ class News extends Model
 
     protected function resolveImageUrl(?string $path): string
     {
-        if (is_string($path) && preg_match('/^https?:\/\//i', $path)) {
-            return $path;
+        if (! is_string($path) || $path === '') {
+            return asset('images/no-image.svg');
         }
 
-        if (is_string($path) && $path !== '' && Storage::disk('public')->exists($path)) {
-            return asset('storage/' . ltrim($path, '/'));
-        }
-
-        return asset('images/no-image.svg');
+        return app(NewsImageStorage::class)->url($path);
     }
 
     public const CATEGORIES = [

@@ -7,36 +7,32 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\QuedanController;
-use App\Http\Controllers\PublicSite\CareerPublicController;
-use App\Http\Controllers\PublicSite\HomeController;
-use App\Http\Controllers\PublicSite\NewsPublicController;
-use App\Http\Controllers\PublicSite\QuedanPublicController;
 use Illuminate\Support\Facades\Route;
 
-// Public website routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::view('/about', 'pages.about', ['activePage' => 'about'])->name('about');
-Route::view('/services', 'pages.services', ['activePage' => 'services'])->name('services');
-Route::view('/process', 'pages.process', ['activePage' => 'process'])->name('process');
-Route::get('/news', [NewsPublicController::class, 'index'])->name('news.index');
-Route::get('/news/{news}', [NewsPublicController::class, 'show'])->name('news.show');
-Route::get('/quedan', [QuedanPublicController::class, 'index'])->name('quedan');
-Route::get('/community', fn () => redirect()->route('news.index', ['category' => 'CSR / Community']))->name('community');
-Route::view('/contact', 'pages.contact', ['activePage' => 'contact'])->name('contact');
-Route::get('/careers', [CareerPublicController::class, 'index'])->name('careers');
-Route::get('/careers/{jobOpening}', [CareerPublicController::class, 'show'])->name('careers.show');
+// Public website routes — named for admin "View public" links; always redirect to Next.js.
+Route::middleware('frontend.redirect')->group(function (): void {
+    Route::get('/', fn () => abort(404))->name('home');
+    Route::get('/about', fn () => abort(404))->name('about');
+    Route::get('/services', fn () => abort(404))->name('services');
+    Route::get('/process', fn () => abort(404))->name('process');
+    Route::get('/news', fn () => abort(404))->name('news.index');
+    Route::get('/news/{news}', fn () => abort(404))->name('news.show');
+    Route::get('/quedan', fn () => abort(404))->name('quedan');
+    Route::get('/community', fn () => abort(404))->name('community');
+    Route::get('/contact', fn () => abort(404))->name('contact');
+    Route::get('/careers', fn () => abort(404))->name('careers');
+    Route::get('/careers/{jobOpening}', fn () => abort(404))->name('careers.show');
+});
 
 // Admin authentication and admin panel routes
 Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
-        // Admin login
         Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [AuthController::class, 'login'])
             ->middleware('throttle:admin-login')
             ->name('login.submit');
 
-        // Admin password reset (guest-only)
         Route::middleware('guest')->group(function () {
             Route::get('/forgot-password', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
             Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])
@@ -48,7 +44,6 @@ Route::prefix('admin')
                 ->name('password.store');
         });
 
-        // Protected admin modules
         Route::middleware(['auth', 'admin', 'admin.inactivity'])->group(function () {
             Route::get('/', fn () => redirect()->route('admin.dashboard'))->name('index');
             Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
